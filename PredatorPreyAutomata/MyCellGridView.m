@@ -7,14 +7,15 @@
 //
 
 #import "MyCellGridView.h"
-#define GRID_WIDTH 100
-#define GRID_HEIGHT 100
+#define GRID_WIDTH 3
+#define GRID_HEIGHT 3
 
 typedef enum _CellType {
-    Empty = 0,
-    Prey = 1,
-    Predator = 2
+    CTEmpty = 0,
+    CTPrey = 1,
+    CTPredator = 2
 } CellType;
+CellType grid[GRID_WIDTH][GRID_HEIGHT] = {{0, 1, 0}, {1, 2, 2}, {2, 1, 0}};
 
 @interface MyCellGridView ()
  
@@ -30,27 +31,15 @@ typedef enum _CellType {
     NSColor *preyCellColor;
     float cellWidth;
     float cellHeight;
-    CellType grid[GRID_WIDTH][GRID_HEIGHT];
     
 }
 -(id)initWithFrame:(NSRect)frameRect
 {
     self = [super initWithFrame:frameRect];
     if (self) {
-        emptyCellColor = [NSColor colorWithSRGBRed:1.0f
-                                             green:1.0f 
-                                              blue:1.0f 
-                                             alpha:1.0f];
-        predatorCellColor = [NSColor colorWithSRGBRed:1.0f 
-                                            green:0.0f
-                                             blue:0.0f 
-                                            alpha:1.0f];
-        
-        preyCellColor = [NSColor colorWithSRGBRed:0.0
-                                        green:1.0
-                                         blue:0.0
-                                        alpha:1.0f];
-        printf("%lu\n", sizeof(grid));
+        emptyCellColor = [NSColor whiteColor];
+        predatorCellColor = [NSColor darkGrayColor];
+        preyCellColor = [NSColor lightGrayColor];
     }
     return self;
 }
@@ -74,16 +63,22 @@ typedef enum _CellType {
     NSRect rect;
     [[NSColor whiteColor] set];
     NSRectFill([self bounds]);
-    // fill background
+    
     for (int x = 0; x < GRID_WIDTH; x++) {
         for (int y = 0; y < GRID_HEIGHT; y++) {
-            if (x % 2 == 0 && y % 2 == 0) {
-                [preyCellColor set];
+            if (grid[y][x] == CTEmpty) {
+                [emptyCellColor set];
             }
-            else {
+            else if (grid[y][x] == CTPredator) {
                 [predatorCellColor set];
             }
-            rect = NSMakeRect(x * cellWidth, y * cellHeight, cellWidth, cellHeight);
+            else if (grid[y][x] == CTPrey) {
+                [preyCellColor set];
+            }   
+            rect = NSMakeRect(x * cellWidth, 
+                              self.bounds.size.height - (y + 1) * cellHeight, 
+                              cellWidth, 
+                              cellHeight);
             NSRectFill(rect);
         }
     }
