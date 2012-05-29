@@ -13,6 +13,7 @@
 		EE1A61121575345E00AC0D39 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = EE1A61101575345E00AC0D39 /* Credits.rtf */; };
 		EE1A61151575345E00AC0D39 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A61141575345E00AC0D39 /* AppDelegate.m */; };
 		EE1A61181575345F00AC0D39 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE1A61161575345F00AC0D39 /* MainMenu.xib */; };
+		EE1A6120157536EE00AC0D39 /* MyCellGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A611F157536EE00AC0D39 /* MyCellGridView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,14 +22,16 @@
 		EE1A61041575345E00AC0D39 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		EE1A61051575345E00AC0D39 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		EE1A61061575345E00AC0D39 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		EE1A61091575345E00AC0D39 /* PredatorPreyAutomata-Info.plist */ = {isa = PBXFileReference; path = "PredatorPreyAutomata-Info.plist"; sourceTree = "<group>"; };
+		EE1A61091575345E00AC0D39 /* PredatorPreyAutomata-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PredatorPreyAutomata-Info.plist"; sourceTree = "<group>"; };
 		EE1A610B1575345E00AC0D39 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		EE1A610D1575345E00AC0D39 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		EE1A610F1575345E00AC0D39 /* PredatorPreyAutomata-Prefix.pch */ = {isa = PBXFileReference; path = "PredatorPreyAutomata-Prefix.pch"; sourceTree = "<group>"; };
+		EE1A610F1575345E00AC0D39 /* PredatorPreyAutomata-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PredatorPreyAutomata-Prefix.pch"; sourceTree = "<group>"; };
 		EE1A61111575345E00AC0D39 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		EE1A61131575345E00AC0D39 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		EE1A61131575345E00AC0D39 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EE1A61141575345E00AC0D39 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		EE1A61171575345F00AC0D39 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		EE1A611E157536EE00AC0D39 /* MyCellGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; path = MyCellGridView.h; sourceTree = "<group>"; };
+		EE1A611F157536EE00AC0D39 /* MyCellGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCellGridView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +89,8 @@
 				EE1A61141575345E00AC0D39 /* AppDelegate.m */,
 				EE1A61161575345F00AC0D39 /* MainMenu.xib */,
 				EE1A61081575345E00AC0D39 /* Supporting Files */,
+				EE1A611E157536EE00AC0D39 /* MyCellGridView.h */,
+				EE1A611F157536EE00AC0D39 /* MyCellGridView.m */,
 			);
 			path = PredatorPreyAutomata;
 			sourceTree = "<group>";
@@ -168,6 +173,7 @@
 			files = (
 				EE1A610E1575345E00AC0D39 /* main.m in Sources */,
 				EE1A61151575345E00AC0D39 /* AppDelegate.m in Sources */,
+				EE1A6120157536EE00AC0D39 /* MyCellGridView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
