@@ -9,5 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 @interface MyCellGridView : NSView
-
+{
+    float animationSpeed; //from 0.0f to 1.0f 
+}
 @end

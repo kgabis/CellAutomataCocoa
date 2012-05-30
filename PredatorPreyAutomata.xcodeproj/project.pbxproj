@@ -15,7 +15,7 @@
 		EE1A61181575345F00AC0D39 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE1A61161575345F00AC0D39 /* MainMenu.xib */; };
 		EE1A6120157536EE00AC0D39 /* MyCellGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A611F157536EE00AC0D39 /* MyCellGridView.m */; };
 		EE1A61231576708900AC0D39 /* MyPredatorPreyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A61221576708900AC0D39 /* MyPredatorPreyModel.m */; };
-		EE1A6126157685F300AC0D39 /* MyMainWindowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A6125157685F300AC0D39 /* MyMainWindowViewController.m */; };
+		EE1A6126157685F300AC0D39 /* MyController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A6125157685F300AC0D39 /* MyController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,8 +36,8 @@
 		EE1A611F157536EE00AC0D39 /* MyCellGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCellGridView.m; sourceTree = "<group>"; };
 		EE1A61211576708900AC0D39 /* MyPredatorPreyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPredatorPreyModel.h; sourceTree = "<group>"; };
 		EE1A61221576708900AC0D39 /* MyPredatorPreyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPredatorPreyModel.m; sourceTree = "<group>"; };
-		EE1A6124157685F300AC0D39 /* MyMainWindowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMainWindowViewController.h; sourceTree = "<group>"; };
-		EE1A6125157685F300AC0D39 /* MyMainWindowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMainWindowViewController.m; sourceTree = "<group>"; };
+		EE1A6124157685F300AC0D39 /* MyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyController.h; sourceTree = "<group>"; };
+		EE1A6125157685F300AC0D39 /* MyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,8 +99,8 @@
 				EE1A611F157536EE00AC0D39 /* MyCellGridView.m */,
 				EE1A61211576708900AC0D39 /* MyPredatorPreyModel.h */,
 				EE1A61221576708900AC0D39 /* MyPredatorPreyModel.m */,
-				EE1A6124157685F300AC0D39 /* MyMainWindowViewController.h */,
-				EE1A6125157685F300AC0D39 /* MyMainWindowViewController.m */,
+				EE1A6124157685F300AC0D39 /* MyController.h */,
+				EE1A6125157685F300AC0D39 /* MyController.m */,
 			);
 			path = PredatorPreyAutomata;
 			sourceTree = "<group>";
@@ -185,7 +185,7 @@
 				EE1A61151575345E00AC0D39 /* AppDelegate.m in Sources */,
 				EE1A6120157536EE00AC0D39 /* MyCellGridView.m in Sources */,
 				EE1A61231576708900AC0D39 /* MyPredatorPreyModel.m in Sources */,
-				EE1A6126157685F300AC0D39 /* MyMainWindowViewController.m in Sources */,
+				EE1A6126157685F300AC0D39 /* MyController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,6 +307,7 @@
 				EE1A611D1575345F00AC0D39 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

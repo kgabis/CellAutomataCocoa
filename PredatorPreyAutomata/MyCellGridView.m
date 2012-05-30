@@ -16,6 +16,7 @@
  
     - (void)drawGrid;
     - (void)calculateCellSizes;
+    - (void)animate;
 
 @end
 
@@ -28,6 +29,7 @@
     float cellHeight;
     MyPredatorPreyModel *model;
     
+    
 }
 -(id)initWithFrame:(NSRect)frameRect
 {
@@ -37,6 +39,7 @@
         predatorCellColor = [NSColor darkGrayColor];
         preyCellColor = [NSColor lightGrayColor];
         model = [[MyPredatorPreyModel alloc] initGridWithWidht:GRID_WIDTH Height:GRID_HEIGHT];
+        [self animate];
     }
     return self;
 }
@@ -81,5 +84,15 @@
     }
 }
 
+-(void)animate
+{
+    double delayInSeconds = 0.1;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [model nextIteration];
+        [self setNeedsDisplay:YES];
+        [self animate];
+    });
+}
 
 @end

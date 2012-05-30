@@ -10,6 +10,7 @@
 
 @interface MyPredatorPreyModel ()
 - (void) allocAndPopulateGrid;
+- (void) freeGrid;
 @end
 
 @implementation MyPredatorPreyModel 
@@ -30,13 +31,15 @@
     return self;
 }
 
+
 -(void)nextIteration
 {
-    
+    [self allocAndPopulateGrid];
 }
 
 -(void)allocAndPopulateGrid
 {
+    [self freeGrid];
     self->grid = (CellType**)malloc(_width * sizeof(CellType*));
     for (int i = 0; i < _width; i++) {
         self->grid[i] = (CellType*) malloc(_height * sizeof(CellType));
@@ -58,9 +61,22 @@
         }
     }
 }
+
+-(void)freeGrid
+{
+    if (self->grid != NULL) {
+        for (int i = 0; i < _width; i++) {
+            if (self->grid[i] != NULL) {
+                free(self->grid[i]);
+            }
+        }
+        free(self->grid);
+    }
+}
+
 -(void)dealloc
 {
-    free(self->grid);
+    [self freeGrid];
 }
 
 @end
