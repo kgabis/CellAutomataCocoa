@@ -7,15 +7,10 @@
 //
 
 #import "MyCellGridView.h"
-#define GRID_WIDTH 3
-#define GRID_HEIGHT 3
+#import "MyPredatorPreyModel.h"
 
-typedef enum _CellType {
-    CTEmpty = 0,
-    CTPrey = 1,
-    CTPredator = 2
-} CellType;
-CellType grid[GRID_WIDTH][GRID_HEIGHT] = {{0, 1, 0}, {1, 2, 2}, {2, 1, 0}};
+#define GRID_WIDTH 100
+#define GRID_HEIGHT 100
 
 @interface MyCellGridView ()
  
@@ -31,6 +26,7 @@ CellType grid[GRID_WIDTH][GRID_HEIGHT] = {{0, 1, 0}, {1, 2, 2}, {2, 1, 0}};
     NSColor *preyCellColor;
     float cellWidth;
     float cellHeight;
+    MyPredatorPreyModel *model;
     
 }
 -(id)initWithFrame:(NSRect)frameRect
@@ -40,6 +36,7 @@ CellType grid[GRID_WIDTH][GRID_HEIGHT] = {{0, 1, 0}, {1, 2, 2}, {2, 1, 0}};
         emptyCellColor = [NSColor whiteColor];
         predatorCellColor = [NSColor darkGrayColor];
         preyCellColor = [NSColor lightGrayColor];
+        model = [[MyPredatorPreyModel alloc] initGridWithWidht:GRID_WIDTH Height:GRID_HEIGHT];
     }
     return self;
 }
@@ -66,13 +63,13 @@ CellType grid[GRID_WIDTH][GRID_HEIGHT] = {{0, 1, 0}, {1, 2, 2}, {2, 1, 0}};
     
     for (int x = 0; x < GRID_WIDTH; x++) {
         for (int y = 0; y < GRID_HEIGHT; y++) {
-            if (grid[y][x] == CTEmpty) {
+            if (model.grid[y][x] == CTEmpty) {
                 [emptyCellColor set];
             }
-            else if (grid[y][x] == CTPredator) {
+            else if (model.grid[y][x] == CTPredator) {
                 [predatorCellColor set];
             }
-            else if (grid[y][x] == CTPrey) {
+            else if (model.grid[y][x] == CTPrey) {
                 [preyCellColor set];
             }   
             rect = NSMakeRect(x * cellWidth, 
