@@ -18,7 +18,10 @@ typedef enum _CellType {
 
 @interface MyPredatorPreyModel : NSObject
 {
-    CellType ** grid;
+    //probA + probB + probC = 1
+    float probA; //probability of birth of prey
+    float probB; //probability of birth or predator and death of prey
+    float probC; //probability of death of predator
 }
 
 - (id)initGridWithWidht:(int)width Height:(int)height;

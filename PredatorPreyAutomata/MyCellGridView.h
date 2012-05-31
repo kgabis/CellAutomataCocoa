@@ -10,6 +10,10 @@
 
 @interface MyCellGridView : NSView
 {
-    float animationSpeed; //from 0.0f to 1.0f 
+    @private
+    float animationSpeed; //from 0.0f to 1.0f
+    BOOL running;
 }
+@property (nonatomic) float animationSpeed;
+@property (nonatomic) BOOL running;
 @end

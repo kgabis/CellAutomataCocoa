@@ -9,8 +9,8 @@
 #import "MyCellGridView.h"
 #import "MyPredatorPreyModel.h"
 
-#define GRID_WIDTH 100
-#define GRID_HEIGHT 100
+#define GRID_WIDTH 200
+#define GRID_HEIGHT 200
 
 @interface MyCellGridView ()
  
@@ -28,17 +28,31 @@
     float cellWidth;
     float cellHeight;
     MyPredatorPreyModel *model;
-    
-    
 }
+
+-(float)animationSpeed
+{
+    return self->animationSpeed;
+}
+
+-(void)setAnimationSpeed:(float)aSpeed
+{
+    aSpeed = aSpeed < 0.0f ? 0.0f : aSpeed;
+    aSpeed = aSpeed > 1.0f ? 1.0f : aSpeed;
+    self->animationSpeed = aSpeed;
+}
+
+@synthesize running;
+
 -(id)initWithFrame:(NSRect)frameRect
 {
     self = [super initWithFrame:frameRect];
     if (self) {
-        emptyCellColor = [NSColor whiteColor];
-        predatorCellColor = [NSColor darkGrayColor];
-        preyCellColor = [NSColor lightGrayColor];
+        emptyCellColor = [NSColor blackColor];
+        predatorCellColor = [NSColor redColor];
+        preyCellColor = [NSColor whiteColor];
         model = [[MyPredatorPreyModel alloc] initGridWithWidht:GRID_WIDTH Height:GRID_HEIGHT];
+        self->animationSpeed = 1.0f;
         [self animate];
     }
     return self;
@@ -53,7 +67,6 @@
 
 - (void)calculateCellSizes
 {
-    
     cellHeight = self.bounds.size.height / GRID_HEIGHT;
     cellWidth = self.bounds.size.width / GRID_WIDTH;
 }
@@ -61,13 +74,13 @@
 -(void)drawGrid
 {
     NSRect rect;
-    [[NSColor whiteColor] set];
+    [emptyCellColor set];
     NSRectFill([self bounds]);
     
     for (int x = 0; x < GRID_WIDTH; x++) {
         for (int y = 0; y < GRID_HEIGHT; y++) {
             if (model.grid[y][x] == CTEmpty) {
-                [emptyCellColor set];
+                continue;
             }
             else if (model.grid[y][x] == CTPredator) {
                 [predatorCellColor set];
@@ -76,9 +89,9 @@
                 [preyCellColor set];
             }   
             rect = NSMakeRect(x * cellWidth, 
-                              self.bounds.size.height - (y + 1) * cellHeight, 
-                              cellWidth, 
-                              cellHeight);
+                              y * cellHeight, 
+                              cellWidth + 1.0f, 
+                              cellHeight + 1.0f);
             NSRectFill(rect);
         }
     }
@@ -86,7 +99,7 @@
 
 -(void)animate
 {
-    double delayInSeconds = 0.1;
+    double delayInSeconds = 1.01f - self->animationSpeed;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [model nextIteration];
