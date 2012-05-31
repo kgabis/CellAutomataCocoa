@@ -49,16 +49,17 @@
              west = CTEmpty;
     int neighborPrey, neighborPredators;
     float r;
+    int tempIndex; // To wrap array
+    
     for (int y = 0; y < _height; y++) {
         for (int x = 0; x < _width; x++) {
-            //problem ze znakiem w modulo
             middle = _grid[y][x];
-            int index = (y - 1) % _height;
-            index++;
-            //north = _grid[abs((y - 1) % _height)][x];
+            tempIndex = y == 0 ? _height - 1 : y;
+            north = _grid[tempIndex][x];
             south = _grid[(y + 1) % _height][x];
             east = _grid[y][(x + 1) % _width];
-            //west = _grid[y][abs((x - 1) % _width)];
+            tempIndex = x == 0 ? _width - 1: x;
+            west = _grid[y][tempIndex];
             
             r = (float)(arc4random() % 100) / 100.0f;
             
