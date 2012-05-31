@@ -89,7 +89,7 @@
                 [preyCellColor set];
             }   
             rect = NSMakeRect(x * cellWidth, 
-                              y * cellHeight, 
+                              self.bounds.size.height - (y + 1) * cellHeight, 
                               cellWidth + 1.0f, 
                               cellHeight + 1.0f);
             NSRectFill(rect);

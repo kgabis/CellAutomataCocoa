@@ -24,8 +24,6 @@
 }
 -(void)restartAutomata:(id)sender
 {
-    NSRect oldBounds = cellGridView.bounds;
-//    cellGridView = [[MyCellGridView alloc] initWithFrame:oldBounds];
-    [cellGridView setNeedsDisplay:YES];
+    
 }
 @end
