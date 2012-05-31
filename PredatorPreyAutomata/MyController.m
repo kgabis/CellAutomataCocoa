@@ -22,8 +22,33 @@
 {
     return YES;
 }
--(void)restartAutomata:(id)sender
+
+-(void)resetAutomata:(id)sender
 {
     
 }
+
+-(void)startAutomata:(id)sender
+{
+    
+}
+
+-(void)stopAutomata:(id)sender
+{
+    
+}
+
+-(void)sliderChanged:(NSSlider *)sender
+{
+    if (sender == self->simulationSpeedSlider) {
+        
+    }
+    else if (sender == self->preyBornSlider) {
+        
+    }
+    else if (sender == self->predatorBornSlider) {
+        
+    }
+}
+
 @end

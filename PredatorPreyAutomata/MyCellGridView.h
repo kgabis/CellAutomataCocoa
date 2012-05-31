@@ -11,6 +11,7 @@
 @interface MyCellGridView : NSView
 {
     @private
+    
     float animationSpeed; //from 0.0f to 1.0f
     BOOL running;
 }

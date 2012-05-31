@@ -12,8 +12,15 @@
 @interface MyController : NSViewController
 {
     IBOutlet MyCellGridView *cellGridView;
+    IBOutlet NSSlider *simulationSpeedSlider;
+    IBOutlet NSSlider *preyBornSlider;
+    IBOutlet NSSlider *predatorBornSlider;
 }
 
 
--(IBAction)restartAutomata:(id)sender;
+-(IBAction)startAutomata:(id)sender;
+-(IBAction)stopAutomata:(id)sender;
+-(IBAction)resetAutomata:(id)sender;
+-(IBAction)sliderChanged:(NSSlider*)sender;
+
 @end
