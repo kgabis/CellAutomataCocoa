@@ -18,14 +18,18 @@ typedef enum _CellType {
 
 @interface MyPredatorPreyModel : NSObject
 {
+    @private
     //probA + probB + probC = 1
-    float probA; //probability of birth of prey
-    float probB; //probability of birth or predator and death of prey
-    float probC; //probability of death of predator
+    float probabilityA; //probability of birth of prey
+    float probabilityB; //probability of birth or predator and death of prey
+    float probabilityC; //probability of death of predator
 }
+
+@property (nonatomic) CellType** grid;
+@property (nonatomic) float probabilityA;
+@property (nonatomic) float probabilityB;
 
 - (id)initGridWithWidht:(int)width Height:(int)height;
 - (void)nextIteration;
-@property (nonatomic) CellType** grid;
 
 @end

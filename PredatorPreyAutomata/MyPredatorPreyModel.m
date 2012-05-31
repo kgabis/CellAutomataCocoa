@@ -9,6 +9,7 @@
 #import "MyPredatorPreyModel.h"
 
 @interface MyPredatorPreyModel ()
+
 - (void) populateGrid;
 - (void) freeGrid:(CellType**)grid;
 - (CellType**) allocGrid;
@@ -25,15 +26,30 @@
 
 @synthesize grid = _grid;
 
+@synthesize probabilityA = probabilityA;
+-(void)setProbabilityA:(float)probA
+{
+    self->probabilityA = probA;
+    probabilityC = 1.0f - probabilityA - probabilityB;
+}
+
+@synthesize probabilityB = probabilityB;
+-(void)setProbabilityB:(float)probB
+{
+    self->probabilityB = probB;
+    probabilityC = 1.0f - probabilityA - probabilityB;
+}
+
+
 -(id)initGridWithWidht:(int)width Height:(int)height
 {
     self = [super init];
     if (self) {
         _width = width;
         _height = height;
-        probA = 0.15f;
-        probB = 0.8f;
-        probC = 1.0f - probA - probB;
+//        probabilityA = 0.15f;
+//        probabilityB = 0.8f;
+//        probabilityC = 1.0f - probabilityA - probabilityB;
         [self populateGrid];        
     }
     return self;
@@ -71,7 +87,7 @@
             r = (float)(arc4random() % 100) / 100.0f;
             
             if (middle == CTEmpty) {
-                if (r < (probA * neighborPreyCoef)) {
+                if (r < (probabilityA * neighborPreyCoef)) {
                     _newGrid[y][x] = CTPrey;
                 }
                 else {
@@ -79,7 +95,7 @@
                 }
             }
             else if (middle == CTPrey) {
-                if (r < (probB * neighborPreyCoef)) {
+                if (r < (probabilityB * neighborPreyCoef)) {
                     _newGrid[y][x] = CTPredator;
                 }
                 else {
@@ -87,7 +103,7 @@
                 }
             }
             else if (middle == CTPredator) {
-                if (r < probC) {
+                if (r < probabilityC) {
                     _newGrid[y][x] = CTEmpty;
                 }
                 else {

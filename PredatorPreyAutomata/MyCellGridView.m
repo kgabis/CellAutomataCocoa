@@ -27,8 +27,10 @@
     NSColor *preyCellColor;
     float cellWidth;
     float cellHeight;
-    MyPredatorPreyModel *model;
 }
+
+@synthesize model = model;
+@synthesize running;
 
 -(float)animationSpeed
 {
@@ -42,8 +44,6 @@
     self->animationSpeed = aSpeed;
 }
 
-@synthesize running;
-
 -(id)initWithFrame:(NSRect)frameRect
 {
     self = [super initWithFrame:frameRect];
@@ -52,8 +52,7 @@
         predatorCellColor = [NSColor redColor];
         preyCellColor = [NSColor whiteColor];
         model = [[MyPredatorPreyModel alloc] initGridWithWidht:GRID_WIDTH Height:GRID_HEIGHT];
-        self->animationSpeed = 1.0f;
-        [self animate];
+        self->running = NO;
     }
     return self;
 }
@@ -96,6 +95,21 @@
         }
     }
 }
+-(void)startAnimation
+{
+    self->running = YES;
+    [self animate];
+}
+
+- (void)stopAnimation
+{
+    self->running = NO;
+}
+
+- (void)resetAutomata
+{
+    
+}
 
 -(void)animate
 {
@@ -104,7 +118,9 @@
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [model nextIteration];
         [self setNeedsDisplay:YES];
-        [self animate];
+        if (running) {
+            [self animate];
+        }
     });
 }
 

@@ -7,14 +7,21 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "MyPredatorPreyModel.h"
 
 @interface MyCellGridView : NSView
 {
     @private
-    
     float animationSpeed; //from 0.0f to 1.0f
     BOOL running;
+    MyPredatorPreyModel *model;
 }
 @property (nonatomic) float animationSpeed;
-@property (nonatomic) BOOL running;
+@property (nonatomic, readonly) BOOL running;
+@property (nonatomic, readonly) MyPredatorPreyModel *model;
+
+-(void)stopAnimation;
+-(void)startAnimation;
+-(void)resetAutomata;
+
 @end
