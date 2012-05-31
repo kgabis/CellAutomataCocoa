@@ -12,6 +12,7 @@
 - (void) populateGrid;
 - (void) freeGrid:(CellType**)grid;
 - (CellType**) allocGrid;
+- (int) countType:(CellType)type inArray:(CellType*)array withLen:(int)len;
 
 @end
 
@@ -30,8 +31,8 @@
     if (self) {
         _width = width;
         _height = height;
-        probA = 0.15f;
-        probB = 0.5;
+        probA = 0.4f;
+        probB = 0.4f;
         probC = 1.0f - probA - probB;
         [self populateGrid];        
     }
@@ -42,41 +43,47 @@
 -(void)nextIteration
 {
     
-    CellType middle = CTEmpty,
-             north = CTEmpty,
-             south = CTEmpty,
-             east = CTEmpty,
-             west = CTEmpty;
-    int neighborPrey, neighborPredators;
+    CellType middle = CTEmpty;
+    CellType neighbors[4];
+    int neighborPreyCount, neighborPredatorCount;
     float r;
     int tempIndex; // To wrap array
     
     for (int y = 0; y < _height; y++) {
         for (int x = 0; x < _width; x++) {
+            
             middle = _grid[y][x];
             tempIndex = y == 0 ? _height - 1 : y;
-            north = _grid[tempIndex][x];
-            south = _grid[(y + 1) % _height][x];
-            east = _grid[y][(x + 1) % _width];
+            
+            neighbors[0] = _grid[tempIndex][x];
+            neighbors[1] = _grid[(y + 1) % _height][x];
+            neighbors[2] = _grid[y][(x + 1) % _width];
             tempIndex = x == 0 ? _width - 1: x;
-            west = _grid[y][tempIndex];
+            neighbors[3] = _grid[y][tempIndex];
+            
+            neighborPreyCount = [self countType:CTPrey 
+                                        inArray:neighbors 
+                                        withLen:4];
+            neighborPredatorCount = [self countType:CTPredator
+                                            inArray:neighbors 
+                                            withLen:4];
             
             r = (float)(arc4random() % 100) / 100.0f;
             
             if (middle == CTEmpty) {
-                if ((south == CTPrey || east == CTPrey) && r < probA) {
+                if (neighborPreyCount >= 1 && r < probA) {
                     _newGrid[y][x] = CTPrey;
                 }
                 else {
-                    _newGrid[y][x] = _grid[y][x];
+                    _newGrid[y][x] = middle;
                 }
             }
             else if (middle == CTPrey) {
-                if ((south == CTPrey || east == CTPrey) && r < probB) {
+                if (neighborPreyCount > 1 && r < probB) {
                     _newGrid[y][x] = CTPredator;
                 }
                 else {
-                    _newGrid[y][x] = _grid[y][x];
+                    _newGrid[y][x] = middle;
                 }
             }
             else if (middle == CTPredator) {
@@ -84,11 +91,11 @@
                     _newGrid[y][x] = CTEmpty;
                 }
                 else {
-                    _newGrid[y][x] = _grid[y][x];
+                    _newGrid[y][x] = middle;
                 }
             }
             else {
-                _newGrid[y][x] = _grid[y][x];
+                _newGrid[y][x] = middle;
             }
         }
     }
@@ -122,6 +129,15 @@
             _grid[y][x] = newCell;
         }
     }
+}
+
+-(int)countType:(CellType)type inArray:(CellType *)array withLen:(int)len
+{
+    int result = 0;
+    for (int i = 0; i < len; i++) {
+        array[i] == type ? result++ : result;
+    }
+    return result;
 }
 
 -(CellType**)allocGrid
