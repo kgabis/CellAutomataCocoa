@@ -12,7 +12,7 @@
 - (void) populateGrid;
 - (void) freeGrid:(CellType**)grid;
 - (CellType**) allocGrid;
-- (int) countType:(CellType)type inArray:(CellType*)array withLen:(int)len;
+- (float) calculateCoefOf:(CellType)type inArray:(CellType*)array withLen:(int)len;
 
 @end
 
@@ -31,8 +31,8 @@
     if (self) {
         _width = width;
         _height = height;
-        probA = 0.6f;
-        probB = 0.2f;
+        probA = 0.15f;
+        probB = 0.8f;
         probC = 1.0f - probA - probB;
         [self populateGrid];        
     }
@@ -45,7 +45,7 @@
     
     CellType middle = CTEmpty;
     CellType neighbors[4];
-    float neighborPreyCount, neighborPredatorCount;
+    float neighborPreyCoef, neighborPredatorCoef;
     float r;
     int tempIndex; // To wrap array
     
@@ -53,26 +53,25 @@
         for (int x = 0; x < _width; x++) {
             
             middle = _grid[y][x];
-            tempIndex = y == 0 ? _height - 1: y;
+            neighbors[0] = _grid[(y + 1) % _height][x]; //above
+            neighbors[1] = _grid[y][(x + 1) % _width]; //right
             
-            neighbors[0] = _grid[tempIndex][x]; //below
-            neighbors[1] = _grid[(y + 1) % _height][x]; //above
-            neighbors[2] = _grid[y][(x + 1) % _width]; //right
-            tempIndex = x == 0 ? _width - 1 : x; //left
+            tempIndex = y == 0 ? _height - 1 : y - 1;            
+            neighbors[2] = _grid[tempIndex][x]; //below
+            tempIndex = x == 0 ? _width - 1 : x - 1;
+            neighbors[3] = _grid[y][tempIndex]; //left
             
-            neighbors[3] = _grid[y][tempIndex];
-            
-            neighborPreyCount = (float)[self countType:CTPrey 
-                                        inArray:neighbors 
-                                        withLen:4] / 4.0f;
-            neighborPredatorCount = (float)[self countType:CTPredator
-                                            inArray:neighbors 
-                                            withLen:4] / 4.0f;
+            neighborPreyCoef = [self calculateCoefOf:CTPrey 
+                                             inArray:neighbors 
+                                             withLen:4];
+            neighborPredatorCoef = [self calculateCoefOf:CTPredator
+                                                 inArray:neighbors 
+                                                 withLen:4];
             
             r = (float)(arc4random() % 100) / 100.0f;
             
             if (middle == CTEmpty) {
-                if (r < (probA * neighborPreyCount)) {
+                if (r < (probA * neighborPreyCoef)) {
                     _newGrid[y][x] = CTPrey;
                 }
                 else {
@@ -80,7 +79,7 @@
                 }
             }
             else if (middle == CTPrey) {
-                if (r < (probB * neighborPreyCount)) {
+                if (r < (probB * neighborPreyCoef)) {
                     _newGrid[y][x] = CTPredator;
                 }
                 else {
@@ -88,7 +87,7 @@
                 }
             }
             else if (middle == CTPredator) {
-                if (r < (probC * neighborPredatorCount)) {
+                if (r < probC) {
                     _newGrid[y][x] = CTEmpty;
                 }
                 else {
@@ -143,13 +142,13 @@
 //    _grid[2][2] = 0;
 }
 
--(int)countType:(CellType)type inArray:(CellType *)array withLen:(int)len
+-(float)calculateCoefOf:(CellType)type inArray:(CellType *)array withLen:(int)len
 {
-    int result = 0;
+    int count = 0;
     for (int i = 0; i < len; i++) {
-        array[i] == type ? result++ : result;
+        array[i] == type ? count++ : count;
     }
-    return result;
+    return (float)count / (float)len;
 }
 
 -(CellType**)allocGrid
