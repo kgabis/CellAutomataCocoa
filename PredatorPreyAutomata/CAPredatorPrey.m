@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 AGH. All rights reserved.
 //
 
-#import "MyPredatorPreyModel.h"
+#import "CAPredatorPrey.h"
 
-@interface MyPredatorPreyModel ()
+@interface CAPredatorPrey ()
 
 - (void) populateGrid;
 - (void) freeGrid:(CellType**)grid;
@@ -17,39 +17,41 @@
 
 @end
 
-@implementation MyPredatorPreyModel 
+@implementation CAPredatorPrey 
 {
     int _width, _height;
     CellType **_grid, **_newGrid;
+    //probA + probB + probC = 1
+    float _probabilityA; //probability of birth of prey
+    float _probabilityB; //probability of birth or predator and death of prey
+    float _probabilityC; //probability of death of predator
 
 }
 
 @synthesize grid = _grid;
+@synthesize isIsotropic;
 
-@synthesize probabilityA = probabilityA;
+@synthesize probabilityA = _probabilityA;
 -(void)setProbabilityA:(float)probA
 {
-    self->probabilityA = probA;
-    probabilityC = 1.0f - probabilityA - probabilityB;
+    self->_probabilityA = probA;
+    _probabilityC = 1.0f - _probabilityA - _probabilityB;
 }
 
-@synthesize probabilityB = probabilityB;
+@synthesize probabilityB = _probabilityB;
 -(void)setProbabilityB:(float)probB
 {
-    self->probabilityB = probB;
-    probabilityC = 1.0f - probabilityA - probabilityB;
+    self->_probabilityB = probB;
+    _probabilityC = 1.0f - _probabilityA - _probabilityB;
 }
 
 
--(id)initGridWithWidht:(int)width Height:(int)height
+-(id)initWithWidth:(int)width Height:(int)height
 {
     self = [super init];
     if (self) {
         _width = width;
         _height = height;
-//        probabilityA = 0.15f;
-//        probabilityB = 0.8f;
-//        probabilityC = 1.0f - probabilityA - probabilityB;
         [self populateGrid];        
     }
     return self;
@@ -72,22 +74,32 @@
             neighbors[0] = _grid[(y + 1) % _height][x]; //above
             neighbors[1] = _grid[y][(x + 1) % _width]; //right
             
-            tempIndex = y == 0 ? _height - 1 : y - 1;            
-            neighbors[2] = _grid[tempIndex][x]; //below
-            tempIndex = x == 0 ? _width - 1 : x - 1;
-            neighbors[3] = _grid[y][tempIndex]; //left
-            
-            neighborPreyCoef = [self calculateCoefOf:CTPrey 
-                                             inArray:neighbors 
-                                             withLen:4];
-            neighborPredatorCoef = [self calculateCoefOf:CTPredator
+            if (isIsotropic) {
+                tempIndex = y == 0 ? _height - 1 : y - 1;            
+                neighbors[2] = _grid[tempIndex][x]; //below
+                tempIndex = x == 0 ? _width - 1 : x - 1;
+                neighbors[3] = _grid[y][tempIndex]; //left
+                
+                neighborPreyCoef = [self calculateCoefOf:CTPrey 
                                                  inArray:neighbors 
                                                  withLen:4];
+                neighborPredatorCoef = [self calculateCoefOf:CTPredator
+                                                     inArray:neighbors 
+                                                     withLen:4];
+            }
+            else {
+                neighborPreyCoef = [self calculateCoefOf:CTPrey 
+                                                 inArray:neighbors 
+                                                 withLen:2];
+                neighborPredatorCoef = [self calculateCoefOf:CTPredator
+                                                     inArray:neighbors 
+                                                     withLen:2];
+            }
             
             r = (float)(arc4random() % 100) / 100.0f;
             
             if (middle == CTEmpty) {
-                if (r < (probabilityA * neighborPreyCoef)) {
+                if (r < (_probabilityA * neighborPreyCoef)) {
                     _newGrid[y][x] = CTPrey;
                 }
                 else {
@@ -95,7 +107,7 @@
                 }
             }
             else if (middle == CTPrey) {
-                if (r < (probabilityB * neighborPreyCoef)) {
+                if (r < (_probabilityB * neighborPreyCoef)) {
                     _newGrid[y][x] = CTPredator;
                 }
                 else {
@@ -103,7 +115,7 @@
                 }
             }
             else if (middle == CTPredator) {
-                if (r < probabilityC) {
+                if (r < _probabilityC) {
                     _newGrid[y][x] = CTEmpty;
                 }
                 else {
@@ -115,9 +127,9 @@
             }
         }
     }
-    CellType** toswap = _grid;
+    CellType** toSwap = _grid;
     _grid = _newGrid;
-    _newGrid = toswap;
+    _newGrid = toSwap;
 }
 
 -(void)populateGrid
@@ -144,18 +156,6 @@
             _grid[y][x] = newCell;
         }
     }
-// test code
-//    _grid[0][0] = 0;
-//    _grid[0][1] = 1;
-//    _grid[0][2] = 2;
-//    
-//    _grid[1][0] = 1;
-//    _grid[1][1] = 1;
-//    _grid[1][2] = 1;
-//    
-//    _grid[2][0] = 2;
-//    _grid[2][1] = 1;
-//    _grid[2][2] = 0;
 }
 
 -(float)calculateCoefOf:(CellType)type inArray:(CellType *)array withLen:(int)len
@@ -199,5 +199,6 @@
     [self freeGrid:_grid];
     [self freeGrid:_newGrid];
 }
+
 
 @end

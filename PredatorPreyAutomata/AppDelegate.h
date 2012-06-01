@@ -8,11 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class MyController;
+@class CAViewController;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 {
-    IBOutlet MyController* mainWindowController;
+    IBOutlet CAViewController* mainWindowController;
 }
 @property (assign) IBOutlet NSWindow *window;
 
