@@ -14,7 +14,7 @@
 		EE1A61151575345E00AC0D39 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A61141575345E00AC0D39 /* AppDelegate.m */; };
 		EE1A61181575345F00AC0D39 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE1A61161575345F00AC0D39 /* MainMenu.xib */; };
 		EE1A6120157536EE00AC0D39 /* MyCellGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A611F157536EE00AC0D39 /* MyCellGridView.m */; };
-		EE1A61231576708900AC0D39 /* MyPredatorPreyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A61221576708900AC0D39 /* MyPredatorPreyModel.m */; };
+		EE1A61231576708900AC0D39 /* MyPredatorPreyAutomata.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A61221576708900AC0D39 /* MyPredatorPreyAutomata.m */; };
 		EE1A6126157685F300AC0D39 /* MyController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A6125157685F300AC0D39 /* MyController.m */; };
 /* End PBXBuildFile section */
 
@@ -34,8 +34,8 @@
 		EE1A61171575345F00AC0D39 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		EE1A611E157536EE00AC0D39 /* MyCellGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCellGridView.h; sourceTree = "<group>"; };
 		EE1A611F157536EE00AC0D39 /* MyCellGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCellGridView.m; sourceTree = "<group>"; };
-		EE1A61211576708900AC0D39 /* MyPredatorPreyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPredatorPreyModel.h; sourceTree = "<group>"; };
-		EE1A61221576708900AC0D39 /* MyPredatorPreyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPredatorPreyModel.m; sourceTree = "<group>"; };
+		EE1A61211576708900AC0D39 /* MyPredatorPreyAutomata.h */ = {isa = PBXFileReference; fileEncoding = 4; path = MyPredatorPreyAutomata.h; sourceTree = "<group>"; };
+		EE1A61221576708900AC0D39 /* MyPredatorPreyAutomata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPredatorPreyAutomata.m; sourceTree = "<group>"; };
 		EE1A6124157685F300AC0D39 /* MyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyController.h; sourceTree = "<group>"; };
 		EE1A6125157685F300AC0D39 /* MyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -97,8 +97,8 @@
 				EE1A61081575345E00AC0D39 /* Supporting Files */,
 				EE1A611E157536EE00AC0D39 /* MyCellGridView.h */,
 				EE1A611F157536EE00AC0D39 /* MyCellGridView.m */,
-				EE1A61211576708900AC0D39 /* MyPredatorPreyModel.h */,
-				EE1A61221576708900AC0D39 /* MyPredatorPreyModel.m */,
+				EE1A61211576708900AC0D39 /* MyPredatorPreyAutomata.h */,
+				EE1A61221576708900AC0D39 /* MyPredatorPreyAutomata.m */,
 				EE1A6124157685F300AC0D39 /* MyController.h */,
 				EE1A6125157685F300AC0D39 /* MyController.m */,
 			);
@@ -184,7 +184,7 @@
 				EE1A610E1575345E00AC0D39 /* main.m in Sources */,
 				EE1A61151575345E00AC0D39 /* AppDelegate.m in Sources */,
 				EE1A6120157536EE00AC0D39 /* MyCellGridView.m in Sources */,
-				EE1A61231576708900AC0D39 /* MyPredatorPreyModel.m in Sources */,
+				EE1A61231576708900AC0D39 /* MyPredatorPreyAutomata.m in Sources */,
 				EE1A6126157685F300AC0D39 /* MyController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

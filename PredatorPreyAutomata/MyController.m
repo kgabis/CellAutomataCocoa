@@ -14,17 +14,18 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {                
-        cellGridView.animationSpeed = simulationSpeedSlider.floatValue / 100.0f;
-        cellGridView.model.probabilityA = preyBornSlider.floatValue / 100.0f;
-        cellGridView.model.probabilityB = predatorBornSlider.floatValue / 100.0f;
     }
     return self;
 }
-
--(BOOL)acceptsFirstResponder
+         
+-(void)awakeFromNib
 {
-    return YES;
+    cellGridView.animationSpeed = simulationSpeedSlider.floatValue / 100.0f;
+    cellGridView.model.probabilityA = preyBornSlider.floatValue / 100.0f;
+    cellGridView.model.probabilityB = predatorBornSlider.floatValue / 100.0f;
+    [cellGridView startAnimation];
 }
+
 
 -(void)resetAutomata:(id)sender
 {

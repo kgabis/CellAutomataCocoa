@@ -7,7 +7,7 @@
 //
 
 #import "MyCellGridView.h"
-#import "MyPredatorPreyModel.h"
+#import "MyPredatorPreyAutomata.h"
 
 #define GRID_WIDTH 200
 #define GRID_HEIGHT 200
@@ -51,7 +51,7 @@
         emptyCellColor = [NSColor blackColor];
         predatorCellColor = [NSColor redColor];
         preyCellColor = [NSColor whiteColor];
-        model = [[MyPredatorPreyModel alloc] initGridWithWidht:GRID_WIDTH Height:GRID_HEIGHT];
+        model = [[MyPredatorPreyAutomata alloc] initWithWidth:GRID_WIDTH Height:GRID_HEIGHT];
         self->running = NO;
     }
     return self;
@@ -108,20 +108,22 @@
 
 - (void)resetAutomata
 {
-    
+    [self stopAnimation];
+    model = [[MyPredatorPreyAutomata alloc] initWithWidth:GRID_WIDTH Height:GRID_HEIGHT];
 }
 
 -(void)animate
 {
-    double delayInSeconds = 1.01f - self->animationSpeed;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [model nextIteration];
-        [self setNeedsDisplay:YES];
-        if (running) {
+    if (running) {
+        double delayInSeconds = 1.01f - self->animationSpeed;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [model nextIteration];
+            [self setNeedsDisplay:YES];
             [self animate];
-        }
-    });
+        });
+    }
+    
 }
 
 @end
