@@ -19,24 +19,24 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		EE1A60FD1575345E00AC0D39 /* PredatorPreyAutomata.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PredatorPreyAutomata.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE1A60FD1575345E00AC0D39 /* CellularAutomataCocoa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CellularAutomataCocoa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE1A61011575345E00AC0D39 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		EE1A61041575345E00AC0D39 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		EE1A61051575345E00AC0D39 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		EE1A61061575345E00AC0D39 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		EE1A61091575345E00AC0D39 /* PredatorPreyAutomata-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PredatorPreyAutomata-Info.plist"; sourceTree = "<group>"; };
+		EE1A61091575345E00AC0D39 /* CellularAutomataCocoa-Info.plist */ = {isa = PBXFileReference; path = "CellularAutomataCocoa-Info.plist"; sourceTree = "<group>"; };
 		EE1A610B1575345E00AC0D39 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		EE1A610D1575345E00AC0D39 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		EE1A610F1575345E00AC0D39 /* PredatorPreyAutomata-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PredatorPreyAutomata-Prefix.pch"; sourceTree = "<group>"; };
+		EE1A610F1575345E00AC0D39 /* CellularAutomataCocoa-Prefix.pch */ = {isa = PBXFileReference; path = "CellularAutomataCocoa-Prefix.pch"; sourceTree = "<group>"; };
 		EE1A61111575345E00AC0D39 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		EE1A61131575345E00AC0D39 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EE1A61141575345E00AC0D39 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		EE1A61171575345F00AC0D39 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		EE1A611E157536EE00AC0D39 /* CACellGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; path = CACellGridView.h; sourceTree = "<group>"; };
+		EE1A611E157536EE00AC0D39 /* CACellGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CACellGridView.h; sourceTree = "<group>"; };
 		EE1A611F157536EE00AC0D39 /* CACellGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CACellGridView.m; sourceTree = "<group>"; };
-		EE1A61211576708900AC0D39 /* CAPredatorPrey.h */ = {isa = PBXFileReference; fileEncoding = 4; path = CAPredatorPrey.h; sourceTree = "<group>"; };
+		EE1A61211576708900AC0D39 /* CAPredatorPrey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPredatorPrey.h; sourceTree = "<group>"; };
 		EE1A61221576708900AC0D39 /* CAPredatorPrey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPredatorPrey.m; sourceTree = "<group>"; };
-		EE1A6124157685F300AC0D39 /* CAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = CAViewController.h; sourceTree = "<group>"; };
+		EE1A6124157685F300AC0D39 /* CAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAViewController.h; sourceTree = "<group>"; };
 		EE1A6125157685F300AC0D39 /* CAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -55,7 +55,7 @@
 		EE1A60F21575345E00AC0D39 = {
 			isa = PBXGroup;
 			children = (
-				EE1A61071575345E00AC0D39 /* PredatorPreyAutomata */,
+				EE1A61071575345E00AC0D39 /* CellularAutomataCocoa */,
 				EE1A61001575345E00AC0D39 /* Frameworks */,
 				EE1A60FE1575345E00AC0D39 /* Products */,
 			);
@@ -64,7 +64,7 @@
 		EE1A60FE1575345E00AC0D39 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EE1A60FD1575345E00AC0D39 /* PredatorPreyAutomata.app */,
+				EE1A60FD1575345E00AC0D39 /* CellularAutomataCocoa.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -88,7 +88,7 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
-		EE1A61071575345E00AC0D39 /* PredatorPreyAutomata */ = {
+		EE1A61071575345E00AC0D39 /* CellularAutomataCocoa */ = {
 			isa = PBXGroup;
 			children = (
 				EE1A61131575345E00AC0D39 /* AppDelegate.h */,
@@ -102,16 +102,17 @@
 				EE1A6124157685F300AC0D39 /* CAViewController.h */,
 				EE1A6125157685F300AC0D39 /* CAViewController.m */,
 			);
+			name = CellularAutomataCocoa;
 			path = PredatorPreyAutomata;
 			sourceTree = "<group>";
 		};
 		EE1A61081575345E00AC0D39 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				EE1A61091575345E00AC0D39 /* PredatorPreyAutomata-Info.plist */,
+				EE1A61091575345E00AC0D39 /* CellularAutomataCocoa-Info.plist */,
 				EE1A610A1575345E00AC0D39 /* InfoPlist.strings */,
 				EE1A610D1575345E00AC0D39 /* main.m */,
-				EE1A610F1575345E00AC0D39 /* PredatorPreyAutomata-Prefix.pch */,
+				EE1A610F1575345E00AC0D39 /* CellularAutomataCocoa-Prefix.pch */,
 				EE1A61101575345E00AC0D39 /* Credits.rtf */,
 			);
 			name = "Supporting Files";
@@ -120,9 +121,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		EE1A60FC1575345E00AC0D39 /* PredatorPreyAutomata */ = {
+		EE1A60FC1575345E00AC0D39 /* CellularAutomataCocoa */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EE1A611B1575345F00AC0D39 /* Build configuration list for PBXNativeTarget "PredatorPreyAutomata" */;
+			buildConfigurationList = EE1A611B1575345F00AC0D39 /* Build configuration list for PBXNativeTarget "CellularAutomataCocoa" */;
 			buildPhases = (
 				EE1A60F91575345E00AC0D39 /* Sources */,
 				EE1A60FA1575345E00AC0D39 /* Frameworks */,
@@ -132,9 +133,9 @@
 			);
 			dependencies = (
 			);
-			name = PredatorPreyAutomata;
+			name = CellularAutomataCocoa;
 			productName = PredatorPreyAutomata;
-			productReference = EE1A60FD1575345E00AC0D39 /* PredatorPreyAutomata.app */;
+			productReference = EE1A60FD1575345E00AC0D39 /* CellularAutomataCocoa.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -146,7 +147,7 @@
 				LastUpgradeCheck = 0430;
 				ORGANIZATIONNAME = AGH;
 			};
-			buildConfigurationList = EE1A60F71575345E00AC0D39 /* Build configuration list for PBXProject "PredatorPreyAutomata" */;
+			buildConfigurationList = EE1A60F71575345E00AC0D39 /* Build configuration list for PBXProject "CellularAutomataCocoa" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -158,7 +159,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EE1A60FC1575345E00AC0D39 /* PredatorPreyAutomata */,
+				EE1A60FC1575345E00AC0D39 /* CellularAutomataCocoa */,
 			);
 		};
 /* End PBXProject section */
@@ -270,9 +271,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "PredatorPreyAutomata/PredatorPreyAutomata-Prefix.pch";
-				INFOPLIST_FILE = "PredatorPreyAutomata/PredatorPreyAutomata-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "PredatorPreyAutomata/CellularAutomataCocoa-Prefix.pch";
+				INFOPLIST_FILE = "PredatorPreyAutomata/CellularAutomataCocoa-Info.plist";
+				PRODUCT_NAME = CellularAutomataCocoa;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -281,9 +282,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "PredatorPreyAutomata/PredatorPreyAutomata-Prefix.pch";
-				INFOPLIST_FILE = "PredatorPreyAutomata/PredatorPreyAutomata-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "PredatorPreyAutomata/CellularAutomataCocoa-Prefix.pch";
+				INFOPLIST_FILE = "PredatorPreyAutomata/CellularAutomataCocoa-Info.plist";
+				PRODUCT_NAME = CellularAutomataCocoa;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -291,7 +292,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		EE1A60F71575345E00AC0D39 /* Build configuration list for PBXProject "PredatorPreyAutomata" */ = {
+		EE1A60F71575345E00AC0D39 /* Build configuration list for PBXProject "CellularAutomataCocoa" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EE1A61191575345F00AC0D39 /* Debug */,
@@ -300,7 +301,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EE1A611B1575345F00AC0D39 /* Build configuration list for PBXNativeTarget "PredatorPreyAutomata" */ = {
+		EE1A611B1575345F00AC0D39 /* Build configuration list for PBXNativeTarget "CellularAutomataCocoa" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EE1A611C1575345F00AC0D39 /* Debug */,

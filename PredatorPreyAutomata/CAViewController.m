@@ -1,9 +1,9 @@
 //
 //  MyMainWindowViewController.m
-//  PredatorPreyAutomata
+//  CellularAutomataCocoa
 //
 //  Created by Krzysztof Gabis on 30.05.2012.
-//  Copyright (c) 2012 AGH. All rights reserved.
+//  Copyright (c) 2012 Krzysztof Gabis. All rights reserved.
 //
 
 #import "CAViewController.h"
