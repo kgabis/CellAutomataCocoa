@@ -11,16 +11,16 @@
 @interface CAPredatorPrey ()
 
 - (void) populateGrid;
-- (void) freeGrid:(CellType**)grid;
-- (CellType**) allocGrid;
+- (void) freeGrid:(Cell**)grid;
+- (Cell**) allocGrid;
 - (float) calculateCoefOf:(CellType)type inArray:(CellType*)array withLen:(int)len;
 
 @end
 
 @implementation CAPredatorPrey 
 {
-    int _width, _height;
-    CellType **_grid, **_newGrid;
+    Cell **_grid, **_newGrid;
+    CellGrid _cellGrid;
     //probA + probB + probC = 1
     float _probabilityA; //probability of birth of prey
     float _probabilityB; //probability of birth or predator and death of prey
@@ -28,56 +28,53 @@
 
 }
 
-@synthesize grid = _grid;
+@synthesize cellGrid = _cellGrid;
 @synthesize isIsotropic;
 
 @synthesize probabilityA = _probabilityA;
 -(void)setProbabilityA:(float)probA
 {
-    self->_probabilityA = probA;
+    _probabilityA = probA;
     _probabilityC = 1.0f - _probabilityA - _probabilityB;
 }
 
 @synthesize probabilityB = _probabilityB;
 -(void)setProbabilityB:(float)probB
 {
-    self->_probabilityB = probB;
+    _probabilityB = probB;
     _probabilityC = 1.0f - _probabilityA - _probabilityB;
 }
-
 
 -(id)initWithWidth:(int)width Height:(int)height
 {
     self = [super init];
     if (self) {
-        _width = width;
-        _height = height;
+        _cellGrid.width = width;
+        _cellGrid.height = height;
         [self populateGrid];        
     }
     return self;
 }
 
-
 -(void)nextIteration
 {
-    
     CellType middle = CTEmpty;
     CellType neighbors[4];
     float neighborPreyCoef, neighborPredatorCoef;
     float r;
     int tempIndex; // To wrap array
     
-    for (int y = 0; y < _height; y++) {
-        for (int x = 0; x < _width; x++) {
+    for (int y = 0; y < _cellGrid.height; y++) {
+        for (int x = 0; x < _cellGrid.width; x++) {
             
             middle = _grid[y][x];
-            neighbors[0] = _grid[(y + 1) % _height][x]; //above
-            neighbors[1] = _grid[y][(x + 1) % _width]; //right
+            neighbors[0] = _grid[(y + 1) % _cellGrid.height][x]; //above
+            neighbors[1] = _grid[y][(x + 1) % _cellGrid.width]; //right
             
             if (isIsotropic) {
-                tempIndex = y == 0 ? _height - 1 : y - 1;            
+                tempIndex = y == 0 ? _cellGrid.height - 1 : y - 1;            
                 neighbors[2] = _grid[tempIndex][x]; //below
-                tempIndex = x == 0 ? _width - 1 : x - 1;
+                tempIndex = x == 0 ? _cellGrid.width - 1 : x - 1;
                 neighbors[3] = _grid[y][tempIndex]; //left
                 
                 neighborPreyCoef = [self calculateCoefOf:CTPrey 
@@ -94,11 +91,11 @@
                 neighborPredatorCoef = [self calculateCoefOf:CTPredator
                                                      inArray:neighbors 
                                                      withLen:2];
-            }
+            }            
             
             r = (float)(arc4random() % 100) / 100.0f;
             
-            if (middle == CTEmpty) {
+            if (middle == CTEmpty && neighborPreyCoef >= 0.25f) {
                 if (r < (_probabilityA * neighborPreyCoef)) {
                     _newGrid[y][x] = CTPrey;
                 }
@@ -106,8 +103,8 @@
                     _newGrid[y][x] = middle;
                 }
             }
-            else if (middle == CTPrey) {
-                if (r < (_probabilityB * neighborPreyCoef)) {
+            else if (middle == CTPrey && neighborPreyCoef > 0.5f) {
+                if (r < ((_probabilityB * neighborPreyCoef) - _probabilityB * neighborPredatorCoef)) {
                     _newGrid[y][x] = CTPredator;
                 }
                 else {
@@ -130,6 +127,7 @@
     CellType** toSwap = _grid;
     _grid = _newGrid;
     _newGrid = toSwap;
+    _cellGrid.grid = _grid;
 }
 
 -(void)populateGrid
@@ -140,8 +138,8 @@
     _grid = [self allocGrid];
     _newGrid = [self allocGrid];
     
-    for (int y = 0; y < _height; y++) {
-        for (int x = 0; x < _width; x++) {
+    for (int y = 0; y < _cellGrid.height; y++) {
+        for (int x = 0; x < _cellGrid.width; x++) {
             int r = arc4random() % 100;
             CellType newCell = CTEmpty;
             if (r < 1) {
@@ -156,6 +154,7 @@
             _grid[y][x] = newCell;
         }
     }
+    _cellGrid.grid = _grid;
 }
 
 -(float)calculateCoefOf:(CellType)type inArray:(CellType *)array withLen:(int)len
@@ -167,25 +166,24 @@
     return (float)count / (float)len;
 }
 
--(CellType**)allocGrid
+-(Cell**)allocGrid
 {
     CellType **grid;
-    grid = (CellType**)malloc(_width * sizeof(CellType*));
-    for (int i = 0; i < _width; i++) {
-        grid[i] = (CellType*) malloc(_height * sizeof(CellType));
-        for (int j = 0; j < _height; j++) {
+    grid = (Cell**)malloc(_cellGrid.width * sizeof(Cell*));
+    for (int i = 0; i < _cellGrid.width; i++) {
+        grid[i] = (Cell*) malloc(_cellGrid.height * sizeof(Cell));
+        for (int j = 0; j < _cellGrid.height; j++) {
             grid[i][j] = CTEmpty;
         }
     }
-    
 
     return grid;
 }
 
--(void)freeGrid:(CellType**)grid
+-(void)freeGrid:(Cell**)grid
 {
     if (grid != NULL) {
-        for (int i = 0; i < _width; i++) {
+        for (int i = 0; i < _cellGrid.width; i++) {
             if (grid[i] != NULL) {
                 free(grid[i]);
             }

@@ -7,8 +7,15 @@
 //
 
 #import "CAViewController.h"
+#import "CACellularAutomata.h"
+
+enum {
+    CACellGridWidth = 200,
+    CACellGridHeight = 200
+};
 
 @interface CAViewController ()
+-(void)animate;
 -(void)setupModel;
 @end
 
@@ -19,6 +26,10 @@
     IBOutlet NSSlider *_preyBornSlider;
     IBOutlet NSSlider *_predatorBornSlider;
     IBOutlet NSButton *_isIsotropicCheckbox;
+    NSObject <CACellularAutomata> *_model;
+    NSDictionary *_colorMap;
+    float _animationSpeed;
+    BOOL _running;
 }
 
 @synthesize cellGridView = _cellGridView;
@@ -30,7 +41,9 @@
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
-    if (self) {                
+    if (self) {
+        [self setupModel];
+        _running = YES;
     }
     return self;
 }
@@ -38,51 +51,78 @@
 -(void)awakeFromNib
 {
     [self setupModel];
-    [self.cellGridView startAnimation];
+    _cellGridView.colorMap = _colorMap;
+    [self animate];
 }
 
 
 -(void)resetAutomata:(id)sender
 {
-    [self.cellGridView resetAutomata];
     [self setupModel];
 }
 
 -(void)startAutomata:(id)sender
 {
-    [self.cellGridView startAnimation];
+    _running = YES;
+    [self animate];
 }
 
 -(void)stopAutomata:(id)sender
 {
-    [self.cellGridView stopAnimation];
+    _running = NO;
 }
 
 -(void)sliderChanged:(NSSlider *)sender
 {
     if (sender == self.simulationSpeedSlider) {
-        self.cellGridView.animationSpeed = self.simulationSpeedSlider.floatValue / 100.0f;
+        _animationSpeed = self.simulationSpeedSlider.floatValue / 100.0f;
     }
     else if (sender == self.preyBornSlider) {
-        self.cellGridView.model.probabilityA = self.preyBornSlider.floatValue / 100.0f;
+        ((CAPredatorPrey*)_model).probabilityA = self.preyBornSlider.floatValue / 100.0f;
     }
     else if (sender == self.predatorBornSlider) {
-        self.cellGridView.model.probabilityB = self.predatorBornSlider.floatValue / 100.0f;
+        ((CAPredatorPrey*)_model).probabilityB = self.predatorBornSlider.floatValue / 100.0f;
     }
 }
 
 -(void)checkBoxStateChanged:(NSButton*)sender
 {
     if (sender == self.isIsotropicCheckbox) {
-        self.cellGridView.model.isIsotropic = sender.state;
+        ((CAPredatorPrey*)_model).isIsotropic = sender.state;
     }
 }
 
 -(void)setupModel
 {
-    self.cellGridView.animationSpeed = self.simulationSpeedSlider.floatValue / 100.0f;
-    self.cellGridView.model.probabilityA = self.preyBornSlider.floatValue / 100.0f;
-    self.cellGridView.model.probabilityB = self.predatorBornSlider.floatValue / 100.0f;
-    self.cellGridView.model.isIsotropic = self.isIsotropicCheckbox.state;
+    NSMutableDictionary* mutableColorMap = [[NSMutableDictionary alloc] init];
+    [mutableColorMap setObject:[NSColor whiteColor] forKey:
+                                    [NSNumber numberWithUnsignedInt:CTEmpty]];
+    [mutableColorMap setObject:[NSColor darkGrayColor] forKey:
+                                    [NSNumber numberWithUnsignedInt:CTPrey]];
+    [mutableColorMap setObject:[NSColor redColor] forKey:
+                                [NSNumber numberWithUnsignedInt:CTPredator]];
+    _colorMap = [NSDictionary dictionaryWithDictionary:mutableColorMap];
+    
+    _model = [[CAPredatorPrey alloc] initWithWidth:CACellGridWidth 
+                                            Height:CACellGridHeight];
+    
+    _animationSpeed = self.simulationSpeedSlider.floatValue / 100.0f;
+    ((CAPredatorPrey*)_model).probabilityA = self.preyBornSlider.floatValue / 100.0f;
+    ((CAPredatorPrey*)_model).probabilityB = self.predatorBornSlider.floatValue / 100.0f;
+    ((CAPredatorPrey*)_model).isIsotropic = self.isIsotropicCheckbox.state;
+}
+
+-(void)animate
+{
+    double delayInSeconds = 1.01f - _animationSpeed;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        if (_running) {
+            [_model nextIteration];
+            _cellGridView.cellGrid = _model.cellGrid;
+            [_cellGridView setNeedsDisplay:YES];
+            [self animate];
+        }
+    });  
 }
 @end

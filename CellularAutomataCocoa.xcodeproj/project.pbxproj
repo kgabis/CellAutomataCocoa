@@ -24,10 +24,10 @@
 		EE1A61041575345E00AC0D39 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		EE1A61051575345E00AC0D39 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		EE1A61061575345E00AC0D39 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		EE1A61091575345E00AC0D39 /* CellularAutomataCocoa-Info.plist */ = {isa = PBXFileReference; path = "CellularAutomataCocoa-Info.plist"; sourceTree = "<group>"; };
+		EE1A61091575345E00AC0D39 /* CellularAutomataCocoa-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CellularAutomataCocoa-Info.plist"; sourceTree = "<group>"; };
 		EE1A610B1575345E00AC0D39 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		EE1A610D1575345E00AC0D39 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		EE1A610F1575345E00AC0D39 /* CellularAutomataCocoa-Prefix.pch */ = {isa = PBXFileReference; path = "CellularAutomataCocoa-Prefix.pch"; sourceTree = "<group>"; };
+		EE1A610F1575345E00AC0D39 /* CellularAutomataCocoa-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CellularAutomataCocoa-Prefix.pch"; sourceTree = "<group>"; };
 		EE1A61111575345E00AC0D39 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		EE1A61131575345E00AC0D39 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EE1A61141575345E00AC0D39 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -38,6 +38,7 @@
 		EE1A61221576708900AC0D39 /* CAPredatorPrey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPredatorPrey.m; sourceTree = "<group>"; };
 		EE1A6124157685F300AC0D39 /* CAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAViewController.h; sourceTree = "<group>"; };
 		EE1A6125157685F300AC0D39 /* CAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAViewController.m; sourceTree = "<group>"; };
+		EE2CD3A0157B78E200D02FE8 /* CACellularAutomata.h */ = {isa = PBXFileReference; path = CACellularAutomata.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +102,7 @@
 				EE1A61221576708900AC0D39 /* CAPredatorPrey.m */,
 				EE1A6124157685F300AC0D39 /* CAViewController.h */,
 				EE1A6125157685F300AC0D39 /* CAViewController.m */,
+				EE2CD3A0157B78E200D02FE8 /* CACellularAutomata.h */,
 			);
 			name = CellularAutomataCocoa;
 			path = PredatorPreyAutomata;

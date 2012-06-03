@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
+#import "CACellularAutomata.h"
 
 typedef enum _CellType {
     CTEmpty = 0,
@@ -16,11 +16,11 @@ typedef enum _CellType {
 } CellType;
 
 
-@interface CAPredatorPrey : NSObject
+@interface CAPredatorPrey : NSObject <CACellularAutomata>
 {
 }
 
-@property (nonatomic) CellType** grid;
+@property (nonatomic) CellGrid cellGrid;
 @property (nonatomic) float probabilityA;
 @property (nonatomic) float probabilityB;
 @property (nonatomic) BOOL isIsotropic;

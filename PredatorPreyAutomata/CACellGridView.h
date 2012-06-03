@@ -8,16 +8,17 @@
 
 #import <Cocoa/Cocoa.h>
 #import "CAPredatorPrey.h"
+#import "CACellularAutomata.h"
 
 @interface CACellGridView : NSView
 {
+    CellGrid _cellGrid;
+    NSDictionary *_colorMap;
 }
-@property (nonatomic) float animationSpeed; //from 0.0f to 1.0f
-@property (nonatomic, readonly) BOOL running;
-@property (nonatomic, readonly) CAPredatorPrey *model;
 
--(void)stopAnimation;
--(void)startAnimation;
--(void)resetAutomata;
+-(void)drawGrid:(CellGrid)cellGrid withColorMap:(NSDictionary*)colorMap;
+
+@property (nonatomic) CellGrid cellGrid;
+@property (nonatomic) NSDictionary* colorMap;
 
 @end
