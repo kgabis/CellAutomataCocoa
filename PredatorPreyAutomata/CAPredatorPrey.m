@@ -21,7 +21,6 @@
 {
     Cell **_grid, **_newGrid;
     CellGrid _cellGrid;
-    //probA + probB + probC = 1
     float _probabilityA; //probability of birth of prey
     float _probabilityB; //probability of birth or predator and death of prey
     float _probabilityC; //probability of death of predator
@@ -32,18 +31,8 @@
 @synthesize isIsotropic;
 
 @synthesize probabilityA = _probabilityA;
--(void)setProbabilityA:(float)probA
-{
-    _probabilityA = probA;
-    _probabilityC = 1.0f - _probabilityA - _probabilityB;
-}
-
 @synthesize probabilityB = _probabilityB;
--(void)setProbabilityB:(float)probB
-{
-    _probabilityB = probB;
-    _probabilityC = 1.0f - _probabilityA - _probabilityB;
-}
+@synthesize probabilityC = _probabilityC;
 
 -(id)initWithWidth:(int)width Height:(int)height
 {
@@ -95,7 +84,7 @@
             
             r = (float)(arc4random() % 100) / 100.0f;
             
-            if (middle == CTEmpty && neighborPreyCoef >= 0.25f) {
+            if (middle == CTEmpty && neighborPreyCoef > 0.0f) {
                 if (r < (_probabilityA * neighborPreyCoef)) {
                     _newGrid[y][x] = CTPrey;
                 }
@@ -103,15 +92,15 @@
                     _newGrid[y][x] = middle;
                 }
             }
-            else if (middle == CTPrey && neighborPreyCoef > 0.5f) {
-                if (r < ((_probabilityB * neighborPreyCoef) - _probabilityB * neighborPredatorCoef)) {
+            else if (middle == CTPrey) {
+                if (r < _probabilityB && neighborPredatorCoef > 0.0f) {
                     _newGrid[y][x] = CTPredator;
                 }
                 else {
                     _newGrid[y][x] = middle;
                 }
             }
-            else if (middle == CTPredator) {
+            else if (middle == CTPredator && neighborPreyCoef <= 0.3f) {
                 if (r < _probabilityC) {
                     _newGrid[y][x] = CTEmpty;
                 }

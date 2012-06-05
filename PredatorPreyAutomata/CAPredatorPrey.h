@@ -23,6 +23,7 @@ typedef enum _CellType {
 @property (nonatomic) CellGrid cellGrid;
 @property (nonatomic) float probabilityA;
 @property (nonatomic) float probabilityB;
+@property (nonatomic) float probabilityC;
 @property (nonatomic) BOOL isIsotropic;
 
 - (id)initWithWidth:(int)width Height:(int)height;

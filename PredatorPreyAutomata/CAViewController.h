@@ -17,6 +17,7 @@
 @property (nonatomic, retain) IBOutlet NSSlider *simulationSpeedSlider;
 @property (nonatomic, retain) IBOutlet NSSlider *preyBornSlider;
 @property (nonatomic, retain) IBOutlet NSSlider *predatorBornSlider;
+@property (nonatomic, retain) IBOutlet NSSlider *predatorDeathSlider;
 @property (nonatomic, retain) IBOutlet NSButton *isIsotropicCheckbox;
 
 -(IBAction)startAutomata:(id)sender;

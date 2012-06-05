@@ -36,6 +36,7 @@ enum {
 @synthesize simulationSpeedSlider = _simulationSpeedSlider;
 @synthesize preyBornSlider = _preyBornSlider;
 @synthesize predatorBornSlider = _predatorBornSlider;
+@synthesize predatorDeathSlider = _predatorDeathSlider;
 @synthesize isIsotropicCheckbox = _isIsotropicCheckbox;
 
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -59,6 +60,8 @@ enum {
 -(void)resetAutomata:(id)sender
 {
     [self setupModel];
+    _cellGridView.cellGrid = _model.cellGrid;
+    [_cellGridView setNeedsDisplay:YES];
 }
 
 -(void)startAutomata:(id)sender
@@ -82,6 +85,9 @@ enum {
     }
     else if (sender == self.predatorBornSlider) {
         ((CAPredatorPrey*)_model).probabilityB = self.predatorBornSlider.floatValue / 100.0f;
+    }
+    else if (sender == self.predatorDeathSlider) {
+        ((CAPredatorPrey*)_model).probabilityC = self.predatorDeathSlider.floatValue / 100.0f;        
     }
 }
 
@@ -109,6 +115,7 @@ enum {
     _animationSpeed = self.simulationSpeedSlider.floatValue / 100.0f;
     ((CAPredatorPrey*)_model).probabilityA = self.preyBornSlider.floatValue / 100.0f;
     ((CAPredatorPrey*)_model).probabilityB = self.predatorBornSlider.floatValue / 100.0f;
+    ((CAPredatorPrey*)_model).probabilityC = self.predatorDeathSlider.floatValue / 100.0f; 
     ((CAPredatorPrey*)_model).isIsotropic = self.isIsotropicCheckbox.state;
 }
 
