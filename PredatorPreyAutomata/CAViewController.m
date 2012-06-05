@@ -66,8 +66,10 @@ enum {
 
 -(void)startAutomata:(id)sender
 {
-    _running = YES;
-    [self animate];
+    if (!_running) {
+        _running = YES;
+        [self animate];
+    }
 }
 
 -(void)stopAutomata:(id)sender
@@ -121,7 +123,7 @@ enum {
 
 -(void)animate
 {
-    double delayInSeconds = 1.01f - _animationSpeed;
+    double delayInSeconds = 1.005f - _animationSpeed;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         if (_running) {
