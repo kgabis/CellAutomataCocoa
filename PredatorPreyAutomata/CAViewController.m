@@ -10,8 +10,8 @@
 #import "CACellularAutomata.h"
 
 enum {
-    CACellGridWidth = 200,
-    CACellGridHeight = 200
+    CACellGridWidth = 250,
+    CACellGridHeight = 250
 };
 
 @interface CAViewController ()
@@ -25,7 +25,6 @@ enum {
     IBOutlet NSSlider *_simulationSpeedSlider;
     IBOutlet NSSlider *_preyBornSlider;
     IBOutlet NSSlider *_predatorBornSlider;
-    IBOutlet NSButton *_isIsotropicCheckbox;
     NSObject <CACellularAutomata> *_model;
     NSDictionary *_colorMap;
     float _animationSpeed;
@@ -37,7 +36,6 @@ enum {
 @synthesize preyBornSlider = _preyBornSlider;
 @synthesize predatorBornSlider = _predatorBornSlider;
 @synthesize predatorDeathSlider = _predatorDeathSlider;
-@synthesize isIsotropicCheckbox = _isIsotropicCheckbox;
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -61,7 +59,7 @@ enum {
 {
     [self setupModel];
     _cellGridView.cellGrid = _model.cellGrid;
-    [_cellGridView setNeedsDisplay:YES];
+    [_cellGridView setNeedsDisplayInRect:_cellGridView.bounds];
 }
 
 -(void)startAutomata:(id)sender
@@ -93,13 +91,6 @@ enum {
     }
 }
 
--(void)checkBoxStateChanged:(NSButton*)sender
-{
-    if (sender == self.isIsotropicCheckbox) {
-        ((CAPredatorPrey*)_model).isIsotropic = sender.state;
-    }
-}
-
 -(void)setupModel
 {
     NSMutableDictionary* mutableColorMap = [[NSMutableDictionary alloc] init];
@@ -118,7 +109,6 @@ enum {
     ((CAPredatorPrey*)_model).probabilityA = self.preyBornSlider.floatValue / 100.0f;
     ((CAPredatorPrey*)_model).probabilityB = self.predatorBornSlider.floatValue / 100.0f;
     ((CAPredatorPrey*)_model).probabilityC = self.predatorDeathSlider.floatValue / 100.0f; 
-    ((CAPredatorPrey*)_model).isIsotropic = self.isIsotropicCheckbox.state;
 }
 
 -(void)animate
@@ -129,7 +119,7 @@ enum {
         if (_running) {
             [_model nextIteration];
             _cellGridView.cellGrid = _model.cellGrid;
-            [_cellGridView setNeedsDisplay:YES];
+            [_cellGridView setNeedsDisplayInRect:_cellGridView.bounds];
             [self animate];
         }
     });  

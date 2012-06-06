@@ -12,11 +12,7 @@
 
 @interface CACellGridView : NSView
 {
-    CellGrid _cellGrid;
-    NSDictionary *_colorMap;
 }
-
--(void)drawGrid:(CellGrid)cellGrid withColorMap:(NSDictionary*)colorMap;
 
 @property (nonatomic) CellGrid cellGrid;
 @property (nonatomic) NSDictionary* colorMap;

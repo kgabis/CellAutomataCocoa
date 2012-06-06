@@ -1,0 +1,54 @@
+//
+//  CARectColorArray.m
+//  CellularAutomataCocoa
+//
+//  Created by Krzysztof Gabis on 06.06.2012.
+//  Copyright (c) 2012 AGH. All rights reserved.
+//
+
+#import "CARectColorArray.h"
+
+@implementation CARectColorArray
+{
+    int _count;
+    NSRect *_rects;
+    NSColor * __autoreleasing *colors;
+    int _length;
+}
+
+@synthesize count = _count;
+@synthesize rects = _rects;
+@synthesize colors = _colors;
+@synthesize length = _length;
+
+-(id)initWithLength:(int)length
+{
+    self = [super init];
+    if (self) {
+        _length = length;
+        _count = 0;
+        _rects = (NSRect *) malloc(length * sizeof(NSRect));
+        _colors = (NSColor * __autoreleasing *) malloc(length * sizeof(NSColor*));
+    }
+    return self;
+}
+
+- (void)addRect:(NSRect)rect Color:(NSColor *)color
+{
+    _rects[_count] = rect;
+    _colors[_count] = color;
+    _count++;
+}
+
+-(void)clear
+{
+    _count = 0;
+}
+
+-(void)dealloc
+{
+    free(_rects);
+    free(_colors);
+}
+
+@end

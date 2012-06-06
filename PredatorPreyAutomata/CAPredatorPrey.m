@@ -28,7 +28,6 @@
 }
 
 @synthesize cellGrid = _cellGrid;
-@synthesize isIsotropic;
 
 @synthesize probabilityA = _probabilityA;
 @synthesize probabilityB = _probabilityB;
@@ -60,27 +59,17 @@
             neighbors[0] = _grid[(y + 1) % _cellGrid.height][x]; //above
             neighbors[1] = _grid[y][(x + 1) % _cellGrid.width]; //right
             
-            if (isIsotropic) {
-                tempIndex = y == 0 ? _cellGrid.height - 1 : y - 1;            
-                neighbors[2] = _grid[tempIndex][x]; //below
-                tempIndex = x == 0 ? _cellGrid.width - 1 : x - 1;
-                neighbors[3] = _grid[y][tempIndex]; //left
+            tempIndex = y == 0 ? _cellGrid.height - 1 : y - 1;            
+            neighbors[2] = _grid[tempIndex][x]; //below
+            tempIndex = x == 0 ? _cellGrid.width - 1 : x - 1;
+            neighbors[3] = _grid[y][tempIndex]; //left
                 
-                neighborPreyCoef = [self calculateCoefOf:CTPrey 
+            neighborPreyCoef = [self calculateCoefOf:CTPrey 
+                                             inArray:neighbors 
+                                             withLen:4];
+            neighborPredatorCoef = [self calculateCoefOf:CTPredator
                                                  inArray:neighbors 
                                                  withLen:4];
-                neighborPredatorCoef = [self calculateCoefOf:CTPredator
-                                                     inArray:neighbors 
-                                                     withLen:4];
-            }
-            else {
-                neighborPreyCoef = [self calculateCoefOf:CTPrey 
-                                                 inArray:neighbors 
-                                                 withLen:2];
-                neighborPredatorCoef = [self calculateCoefOf:CTPredator
-                                                     inArray:neighbors 
-                                                     withLen:2];
-            }            
             
             r = (float)(arc4random() % 100) / 100.0f;
             

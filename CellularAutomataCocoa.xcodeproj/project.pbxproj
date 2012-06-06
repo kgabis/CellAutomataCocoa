@@ -16,6 +16,7 @@
 		EE1A6120157536EE00AC0D39 /* CACellGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A611F157536EE00AC0D39 /* CACellGridView.m */; };
 		EE1A61231576708900AC0D39 /* CAPredatorPrey.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A61221576708900AC0D39 /* CAPredatorPrey.m */; };
 		EE1A6126157685F300AC0D39 /* CAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A6125157685F300AC0D39 /* CAViewController.m */; };
+		EE576BCB157FFA3D00561514 /* CARectColorArray.m in Sources */ = {isa = PBXBuildFile; fileRef = EE576BCA157FFA3D00561514 /* CARectColorArray.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,7 +39,9 @@
 		EE1A61221576708900AC0D39 /* CAPredatorPrey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPredatorPrey.m; sourceTree = "<group>"; };
 		EE1A6124157685F300AC0D39 /* CAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAViewController.h; sourceTree = "<group>"; };
 		EE1A6125157685F300AC0D39 /* CAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAViewController.m; sourceTree = "<group>"; };
-		EE2CD3A0157B78E200D02FE8 /* CACellularAutomata.h */ = {isa = PBXFileReference; path = CACellularAutomata.h; sourceTree = "<group>"; };
+		EE2CD3A0157B78E200D02FE8 /* CACellularAutomata.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CACellularAutomata.h; sourceTree = "<group>"; };
+		EE576BC9157FFA3D00561514 /* CARectColorArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CARectColorArray.h; sourceTree = "<group>"; };
+		EE576BCA157FFA3D00561514 /* CARectColorArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CARectColorArray.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +106,8 @@
 				EE1A6124157685F300AC0D39 /* CAViewController.h */,
 				EE1A6125157685F300AC0D39 /* CAViewController.m */,
 				EE2CD3A0157B78E200D02FE8 /* CACellularAutomata.h */,
+				EE576BC9157FFA3D00561514 /* CARectColorArray.h */,
+				EE576BCA157FFA3D00561514 /* CARectColorArray.m */,
 			);
 			name = CellularAutomataCocoa;
 			path = PredatorPreyAutomata;
@@ -189,6 +194,7 @@
 				EE1A6120157536EE00AC0D39 /* CACellGridView.m in Sources */,
 				EE1A61231576708900AC0D39 /* CAPredatorPrey.m in Sources */,
 				EE1A6126157685F300AC0D39 /* CAViewController.m in Sources */,
+				EE576BCB157FFA3D00561514 /* CARectColorArray.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
