@@ -20,10 +20,13 @@ typedef enum _CellType {
 {
 }
 
-@property (nonatomic) CellGrid cellGrid;
-@property (nonatomic) float probabilityA;
-@property (nonatomic) float probabilityB;
-@property (nonatomic) float probabilityC;
+@property (readonly) CellGrid cellGrid;
+@property float probabilityA;
+@property float probabilityB;
+@property float probabilityC;
+@property (readonly) int totalCellCount;
+@property (readonly) int preyCellCount;
+@property (readonly) int predatorCellCount;
 
 - (id)initWithWidth:(int)width Height:(int)height;
 - (void)nextIteration;

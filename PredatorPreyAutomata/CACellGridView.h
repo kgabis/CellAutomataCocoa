@@ -14,7 +14,7 @@
 {
 }
 
-@property (nonatomic) CellGrid cellGrid;
-@property (nonatomic) NSDictionary* colorMap;
+@property CellGrid cellGrid;
+@property NSDictionary* colorMap;
 
 @end

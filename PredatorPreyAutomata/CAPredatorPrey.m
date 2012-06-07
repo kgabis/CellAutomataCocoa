@@ -24,14 +24,18 @@
     float _probabilityA; //probability of birth of prey
     float _probabilityB; //probability of birth or predator and death of prey
     float _probabilityC; //probability of death of predator
-
+    int _totalCellCount;
+    int _preyCellCount;
+    int _predatorCellCount;
 }
 
 @synthesize cellGrid = _cellGrid;
-
 @synthesize probabilityA = _probabilityA;
 @synthesize probabilityB = _probabilityB;
 @synthesize probabilityC = _probabilityC;
+@synthesize totalCellCount = _totalCellCount;
+@synthesize preyCellCount = _preyCellCount;
+@synthesize predatorCellCount = _predatorCellCount;
 
 -(id)initWithWidth:(int)width Height:(int)height
 {
@@ -39,6 +43,7 @@
     if (self) {
         _cellGrid.width = width;
         _cellGrid.height = height;
+        _totalCellCount = width * height;
         [self populateGrid];        
     }
     return self;
@@ -46,7 +51,7 @@
 
 -(void)nextIteration
 {
-    CellType middle = CTEmpty;
+    CellType middle;
     CellType neighbors[8];
     float neighborPreyCoef, neighborPredatorCoef;
     float r;
@@ -68,7 +73,7 @@
             neighbors[6] = _grid[(y + 1) % _cellGrid.height][x]; // S
             neighbors[7] = _grid[(y + 1) % _cellGrid.height]
                                 [(x + 1) % _cellGrid.width];// SE
-            
+
             neighborPreyCoef = [self calculateCoefOf:CTPrey 
                                              inArray:neighbors 
                                              withLen:8];
@@ -81,6 +86,7 @@
             if (middle == CTEmpty && neighborPreyCoef > 0.0f) {
                 if (r < (_probabilityA * neighborPreyCoef)) {
                     _newGrid[y][x] = CTPrey;
+                    _preyCellCount++;
                 }
                 else {
                     _newGrid[y][x] = middle;
@@ -89,6 +95,8 @@
             else if (middle == CTPrey) {
                 if (r < _probabilityB && neighborPredatorCoef > 0.0f) {
                     _newGrid[y][x] = CTPredator;
+                    _predatorCellCount++;
+                    _preyCellCount--;
                 }
                 else {
                     _newGrid[y][x] = middle;
@@ -97,6 +105,7 @@
             else if (middle == CTPredator && neighborPreyCoef <= 0.15f) {
                 if (r < _probabilityC) {
                     _newGrid[y][x] = CTEmpty;
+                    _predatorCellCount--;
                 }
                 else {
                     _newGrid[y][x] = middle;
@@ -120,16 +129,18 @@
     
     _grid = [self allocGrid];
     _newGrid = [self allocGrid];
-    
+    CellType newCell;
+    int r;
     for (int y = 0; y < _cellGrid.height; y++) {
         for (int x = 0; x < _cellGrid.width; x++) {
-            int r = arc4random() % 100;
-            CellType newCell = CTEmpty;
+            r = arc4random() % 100;
             if (r < 1) {
                 newCell = CTPredator;
+                _predatorCellCount++;
             }
             else if (r >= 1 && r < 2) {
                 newCell = CTPrey;
+                _preyCellCount++;
             }
             else {
                 newCell = CTEmpty;
@@ -155,11 +166,7 @@
     grid = (Cell**)malloc(_cellGrid.width * sizeof(Cell*));
     for (int i = 0; i < _cellGrid.width; i++) {
         grid[i] = (Cell*) malloc(_cellGrid.height * sizeof(Cell));
-        for (int j = 0; j < _cellGrid.height; j++) {
-            grid[i][j] = CTEmpty;
-        }
     }
-
     return grid;
 }
 
