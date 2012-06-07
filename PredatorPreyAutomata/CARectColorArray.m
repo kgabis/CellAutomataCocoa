@@ -26,7 +26,6 @@
     self = [super init];
     if (self) {
         _length = length;
-        _count = 0;
         _rects = (NSRect *) malloc(length * sizeof(NSRect));
         _colors = (NSColor * __autoreleasing *) malloc(length * sizeof(NSColor*));
     }

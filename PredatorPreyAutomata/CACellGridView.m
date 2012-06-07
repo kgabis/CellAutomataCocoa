@@ -25,7 +25,6 @@
 {
     self = [super initWithFrame:frameRect];
     if (self) {
-        
     }
     return self;
 }
@@ -72,6 +71,7 @@
     for (int y = 0; y < cellGrid.height; y++) {
         for (int x = 0; x < cellGrid.width; x++) {
             
+            // Tries to avoid using dictionary and int boxing
             if (cellGrid.grid[y][x] == 0) {
                 currentCellColor = bgColor;
             }
@@ -79,11 +79,13 @@
                 currentCellColor = [colorMap objectForKey:
                           [NSNumber numberWithUnsignedInt:cellGrid.grid[y][x]]];
             }
-            if ([currentCellColor isEqualTo:previousCellColor]) {
+            
+            // isEqual is expensive, so it uses pointer comparison instead
+            if (currentCellColor == previousCellColor) {
                 cellBounds.size.width += cellWidth;
             }
             else {
-                if ([previousCellColor isNotEqualTo:bgColor]) {
+                if (previousCellColor != bgColor) {
                     [rectColorArray addRect:cellBounds Color:previousCellColor];
                 }
                 cellBounds = NSMakeRect(x * cellWidth + 0.5f, 
@@ -91,8 +93,9 @@
                                           cellWidth + 1.0f, cellHeight + 1.0f);
             }
             
+            // draws row's last element
             if (x == (cellGrid.width - 1)) {
-                if ([currentCellColor isNotEqualTo:bgColor]) {
+                if (previousCellColor != bgColor) {
                     [rectColorArray addRect:cellBounds Color:currentCellColor];
                 }
                 previousCellColor = bgColor;
