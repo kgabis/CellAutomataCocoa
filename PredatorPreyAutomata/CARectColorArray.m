@@ -3,7 +3,7 @@
 //  CellularAutomataCocoa
 //
 //  Created by Krzysztof Gabis on 06.06.2012.
-//  Copyright (c) 2012 AGH. All rights reserved.
+//  Copyright (c) 2012 Krzysztof Gabis. All rights reserved.
 //
 
 #import "CARectColorArray.h"
@@ -35,9 +35,11 @@
 
 - (void)addRect:(NSRect)rect Color:(NSColor *)color
 {
-    _rects[_count] = rect;
-    _colors[_count] = color;
-    _count++;
+    if (_count < _length) {
+        _rects[_count] = rect;
+        _colors[_count] = color;
+        _count++;
+    }
 }
 
 -(void)clear

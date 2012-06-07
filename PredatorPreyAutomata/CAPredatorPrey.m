@@ -47,29 +47,34 @@
 -(void)nextIteration
 {
     CellType middle = CTEmpty;
-    CellType neighbors[4];
+    CellType neighbors[8];
     float neighborPreyCoef, neighborPredatorCoef;
     float r;
-    int tempIndex; // To wrap array
+    int wrappedY, wrappedX; // To wrap array
     
     for (int y = 0; y < _cellGrid.height; y++) {
         for (int x = 0; x < _cellGrid.width; x++) {
             
             middle = _grid[y][x];
-            neighbors[0] = _grid[(y + 1) % _cellGrid.height][x]; //above
-            neighbors[1] = _grid[y][(x + 1) % _cellGrid.width]; //right
+            wrappedY = y == 0 ? _cellGrid.height - 1 : y - 1;            
+            wrappedX = x == 0 ? _cellGrid.width - 1 : x - 1;
+            neighbors[0] = _grid[wrappedY][wrappedX]; // NW
+            neighbors[1] = _grid[wrappedY][x]; // N
+            neighbors[2] = _grid[wrappedY][(x +1) % _cellGrid.width]; // NE
             
-            tempIndex = y == 0 ? _cellGrid.height - 1 : y - 1;            
-            neighbors[2] = _grid[tempIndex][x]; //below
-            tempIndex = x == 0 ? _cellGrid.width - 1 : x - 1;
-            neighbors[3] = _grid[y][tempIndex]; //left
-                
+            neighbors[3] = _grid[y][wrappedX]; //W 
+            neighbors[4] = _grid[y][(x +1) % _cellGrid.width]; // E
+            neighbors[5] = _grid[(y + 1) % _cellGrid.height][wrappedX]; // SW
+            neighbors[6] = _grid[(y + 1) % _cellGrid.height][x]; // S
+            neighbors[7] = _grid[(y + 1) % _cellGrid.height]
+                                [(x + 1) % _cellGrid.width];// SE
+            
             neighborPreyCoef = [self calculateCoefOf:CTPrey 
                                              inArray:neighbors 
-                                             withLen:4];
+                                             withLen:8];
             neighborPredatorCoef = [self calculateCoefOf:CTPredator
                                                  inArray:neighbors 
-                                                 withLen:4];
+                                                 withLen:8];
             
             r = (float)(arc4random() % 100) / 100.0f;
             
@@ -89,7 +94,7 @@
                     _newGrid[y][x] = middle;
                 }
             }
-            else if (middle == CTPredator && neighborPreyCoef <= 0.3f) {
+            else if (middle == CTPredator && neighborPreyCoef <= 0.15f) {
                 if (r < _probabilityC) {
                     _newGrid[y][x] = CTEmpty;
                 }
