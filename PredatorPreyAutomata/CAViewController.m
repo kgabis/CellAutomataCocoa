@@ -17,6 +17,7 @@ enum {
 @interface CAViewController ()
 -(void)animate;
 -(void)setupModel;
+-(void)updateTimer;
 @end
 
 @implementation CAViewController
@@ -29,6 +30,7 @@ enum {
     ColorMap _colorMap;
     float _animationSpeed;
     BOOL _running;
+    NSTimer *_timer;
 }
 
 @synthesize cellGridView = _cellGridView;
@@ -42,7 +44,7 @@ enum {
     self = [super initWithCoder:aDecoder];
     if (self) {
         [self setupModel];
-        _running = YES;
+        _running = NO;
     }
     return self;
 }
@@ -51,7 +53,7 @@ enum {
 {
     [self setupModel];
     _cellGridView.colorMap = _colorMap;
-    [self animate];
+    [self startAutomata:nil];
 }
 
 
@@ -66,19 +68,34 @@ enum {
 {
     if (!_running) {
         _running = YES;
-        [self animate];
+        [self updateTimer];
     }
 }
 
 -(void)stopAutomata:(id)sender
 {
     _running = NO;
+    [self updateTimer];
+}
+
+-(void)updateTimer
+{
+    double delayInSeconds = 1.005f - _animationSpeed;
+    [_timer invalidate];
+    if (_running) {
+        _timer = [NSTimer scheduledTimerWithTimeInterval:delayInSeconds 
+                                                  target:self 
+                                                selector:@selector(animate) 
+                                                userInfo:nil 
+                                                 repeats:YES];
+    }
 }
 
 -(void)sliderChanged:(NSSlider *)sender
 {
     if (sender == self.simulationSpeedSlider) {
         _animationSpeed = self.simulationSpeedSlider.floatValue / 100.0f;
+        [self updateTimer];
     }
     else if (sender == self.preyBornSlider) {
         ((CAPredatorPrey*)_model).probabilityA = self.preyBornSlider.floatValue / 100.0f;
@@ -109,17 +126,10 @@ enum {
 }
 
 -(void)animate
-{
-    double delayInSeconds = 1.005f - _animationSpeed;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        if (_running) {
-            [_model nextIteration];
-            _cellGridView.cellGrid = _model.cellGrid;
-            [_cellGridView setNeedsDisplayInRect:_cellGridView.bounds];
-            [self animate];
-        }
-    });  
+{ 
+    [_model nextIteration];
+    _cellGridView.cellGrid = _model.cellGrid;
+    [_cellGridView setNeedsDisplayInRect:_cellGridView.bounds]; 
 }
 
 -(void)dealloc
