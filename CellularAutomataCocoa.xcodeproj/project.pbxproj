@@ -17,7 +17,22 @@
 		EE1A61231576708900AC0D39 /* CAPredatorPrey.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A61221576708900AC0D39 /* CAPredatorPrey.m */; };
 		EE1A6126157685F300AC0D39 /* CAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A6125157685F300AC0D39 /* CAViewController.m */; };
 		EE576BCB157FFA3D00561514 /* CARectColorArray.m in Sources */ = {isa = PBXBuildFile; fileRef = EE576BCA157FFA3D00561514 /* CARectColorArray.m */; };
+		EEDC95A115874E5F00D1C61E /* CellularAutomataCocoa.app in Copy Files */ = {isa = PBXBuildFile; fileRef = EE1A60FD1575345E00AC0D39 /* CellularAutomataCocoa.app */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		EEDC959F15874E2300D1C61E /* Copy Files */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "~/Desktop/";
+			dstSubfolderSpec = 0;
+			files = (
+				EEDC95A115874E5F00D1C61E /* CellularAutomataCocoa.app in Copy Files */,
+			);
+			name = "Copy Files";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		EE1A60FD1575345E00AC0D39 /* CellularAutomataCocoa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CellularAutomataCocoa.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -135,6 +150,7 @@
 				EE1A60F91575345E00AC0D39 /* Sources */,
 				EE1A60FA1575345E00AC0D39 /* Frameworks */,
 				EE1A60FB1575345E00AC0D39 /* Resources */,
+				EEDC959F15874E2300D1C61E /* Copy Files */,
 			);
 			buildRules = (
 			);

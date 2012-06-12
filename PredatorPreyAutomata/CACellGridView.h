@@ -10,11 +10,16 @@
 #import "CAPredatorPrey.h"
 #import "CACellularAutomata.h"
 
+typedef struct _ColorMap {
+    NSColor * __autoreleasing * colors;
+    unsigned int length;
+} ColorMap;
+
 @interface CACellGridView : NSView
 {
 }
 
 @property CellGrid cellGrid;
-@property NSDictionary* colorMap;
+@property ColorMap colorMap;
 
 @end

@@ -10,8 +10,8 @@
 #import "CACellularAutomata.h"
 
 enum {
-    CACellGridWidth = 250,
-    CACellGridHeight = 250
+    CACellGridWidth = 300,
+    CACellGridHeight = 300
 };
 
 @interface CAViewController ()
@@ -26,7 +26,7 @@ enum {
     IBOutlet NSSlider *_preyBornSlider;
     IBOutlet NSSlider *_predatorBornSlider;
     NSObject <CACellularAutomata> *_model;
-    NSDictionary *_colorMap;
+    ColorMap _colorMap;
     float _animationSpeed;
     BOOL _running;
 }
@@ -93,14 +93,11 @@ enum {
 
 -(void)setupModel
 {
-    NSMutableDictionary* mutableColorMap = [[NSMutableDictionary alloc] init];
-    [mutableColorMap setObject:[NSColor whiteColor] forKey:
-                                    [NSNumber numberWithUnsignedInt:CTEmpty]];
-    [mutableColorMap setObject:[NSColor darkGrayColor] forKey:
-                                    [NSNumber numberWithUnsignedInt:CTPrey]];
-    [mutableColorMap setObject:[NSColor redColor] forKey:
-                                [NSNumber numberWithUnsignedInt:CTPredator]];
-    _colorMap = [NSDictionary dictionaryWithDictionary:mutableColorMap];
+    _colorMap.length = 3;
+    _colorMap.colors = (NSColor * __autoreleasing *)malloc(_colorMap.length * sizeof(NSColor*));
+    _colorMap.colors[CTEmpty] = [NSColor whiteColor];
+    _colorMap.colors[CTPrey] = [NSColor darkGrayColor];
+    _colorMap.colors[CTPredator] = [NSColor redColor];
     
     _model = [[CAPredatorPrey alloc] initWithWidth:CACellGridWidth 
                                             Height:CACellGridHeight];
@@ -123,5 +120,10 @@ enum {
             [self animate];
         }
     });  
+}
+
+-(void)dealloc
+{
+    free(_colorMap.colors);
 }
 @end

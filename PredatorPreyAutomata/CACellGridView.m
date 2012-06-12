@@ -11,13 +11,13 @@
 #import "CARectColorArray.h"
 
 @interface CACellGridView ()
--(void)drawGrid:(CellGrid)cellGrid withColorMap:(NSDictionary *)colorMap;
+-(void)drawGrid:(CellGrid)cellGrid withColorMap:(ColorMap)colorMap;
 @end
 
 @implementation CACellGridView
 {
     CellGrid _cellGrid;
-    NSDictionary *_colorMap;
+    ColorMap _colorMap;
     CARectColorArray *rectColorArray;
 }
 
@@ -43,7 +43,7 @@
     return YES;
 }
 
--(void)drawGrid:(CellGrid)cellGrid withColorMap:(NSDictionary *)colorMap
+-(void)drawGrid:(CellGrid)cellGrid withColorMap:(ColorMap)colorMap
 {
     int length = cellGrid.width * cellGrid.height;
     if (!rectColorArray || rectColorArray.length != length) {
@@ -54,7 +54,11 @@
         [rectColorArray clear];
     }
     
-    NSColor *bgColor = [colorMap objectForKey:[NSNumber numberWithUnsignedInt:0]];
+    if (colorMap.length == 0) {
+        return;
+    }
+    
+    NSColor *bgColor = colorMap.colors[0];
     NSColor *currentCellColor;
     NSColor *previousCellColor = bgColor;
     NSRect cellBounds = NSZeroRect;      
@@ -71,13 +75,13 @@
     for (int y = 0; y < cellGrid.height; y++) {
         for (int x = 0; x < cellGrid.width; x++) {
             
-            // Tries to avoid using dictionary and int boxing
-            if (cellGrid.grid[y][x] == 0) {
+            int currentCellValue = cellGrid.grid[y][x];
+            
+            if (currentCellValue == 0) {
                 currentCellColor = bgColor;
             }
-            else {
-                currentCellColor = [colorMap objectForKey:
-                          [NSNumber numberWithUnsignedInt:cellGrid.grid[y][x]]];
+            else if (currentCellValue <= colorMap.length) {
+                currentCellColor = colorMap.colors[currentCellValue];
             }
             
             // isEqual is expensive, so it uses pointer comparison instead
