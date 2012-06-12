@@ -346,7 +346,7 @@
 				<string key="NSWindowContentMaxSize">{720, 600}</string>
 				<string key="NSWindowContentMinSize">{720, 600}</string>
 				<object class="NSView" key="NSWindowView" id="439893737">
-					<reference key="NSNextResponder"/>
+					<nil key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<array class="NSMutableArray" key="NSSubviews">
 						<object class="NSCustomView" id="66210962">
@@ -354,8 +354,6 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{140, 20}, {560, 560}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
-							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<string key="NSClassName">CACellGridView</string>
 						</object>
@@ -364,7 +362,6 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{5, 518}, {133, 32}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="335293036"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -393,7 +390,6 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{5, 550}, {133, 32}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="439146995"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -418,7 +414,6 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{5, 486}, {133, 32}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="346701617"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -443,7 +438,6 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{9, 439}, {129, 25}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="784995399"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -468,7 +462,6 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{14, 465}, {118, 17}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="133019350"/>
 							<string key="NSReuseIdentifierKey">_NS:1505</string>
 							<bool key="NSEnabled">YES</bool>
@@ -504,7 +497,6 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{5, 124}, {133, 26}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="813487649"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -529,7 +521,6 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{5, 72}, {133, 25}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="520487934"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -554,7 +545,6 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{21, 152}, {118, 17}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="680717370"/>
 							<string key="NSReuseIdentifierKey">_NS:1505</string>
 							<bool key="NSEnabled">YES</bool>
@@ -574,7 +564,6 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{8, 99}, {127, 17}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="483513447"/>
 							<string key="NSReuseIdentifierKey">_NS:1505</string>
 							<bool key="NSEnabled">YES</bool>
@@ -594,7 +583,6 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{5, 20}, {133, 25}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="66210962"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -619,7 +607,6 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{8, 47}, {127, 17}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="119257105"/>
 							<string key="NSReuseIdentifierKey">_NS:1505</string>
 							<bool key="NSEnabled">YES</bool>
@@ -636,8 +623,6 @@
 						</object>
 					</array>
 					<string key="NSFrameSize">{720, 600}</string>
-					<reference key="NSSuperview"/>
-					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="400012067"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1280, 800}}</string>
@@ -776,22 +761,6 @@
 					<int key="connectionID">990</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">preyBornSlider</string>
-						<reference key="source" ref="797911340"/>
-						<reference key="destination" ref="680717370"/>
-					</object>
-					<int key="connectionID">991</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">predatorBornSlider</string>
-						<reference key="source" ref="797911340"/>
-						<reference key="destination" ref="483513447"/>
-					</object>
-					<int key="connectionID">992</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">startAutomata:</string>
 						<reference key="source" ref="797911340"/>
@@ -856,14 +825,6 @@
 					<int key="connectionID">1232</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">predatorDeathSlider</string>
-						<reference key="source" ref="797911340"/>
-						<reference key="destination" ref="119257105"/>
-					</object>
-					<int key="connectionID">1261</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">startAutomata:</string>
 						<reference key="source" ref="797911340"/>
@@ -886,6 +847,30 @@
 						<reference key="destination" ref="31375161"/>
 					</object>
 					<int key="connectionID">2716</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">preyBirthRateSlider</string>
+						<reference key="source" ref="797911340"/>
+						<reference key="destination" ref="680717370"/>
+					</object>
+					<int key="connectionID">2717</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">predatorBirthRateSlider</string>
+						<reference key="source" ref="797911340"/>
+						<reference key="destination" ref="483513447"/>
+					</object>
+					<int key="connectionID">2718</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">predatorDeathRateSlider</string>
+						<reference key="source" ref="797911340"/>
+						<reference key="destination" ref="119257105"/>
+					</object>
+					<int key="connectionID">2719</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -2376,7 +2361,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">2716</int>
+			<int key="maxID">2719</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
