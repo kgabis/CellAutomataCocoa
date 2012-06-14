@@ -11,7 +11,7 @@
 @interface CAPlotView ()
 
 -(void)drawBorder;
-
+-(void)drawPlot;
 @end
 
 @implementation CAPlotView
@@ -38,9 +38,19 @@
     [NSBezierPath fillRect:NSInsetRect(self.bounds, 1.0f, 1.0f)];
 }
 
+-(BOOL)isOpaque
+{
+    return YES;
+}
+
 - (void)drawRect:(NSRect)dirtyRect
 {
     [self drawBorder];
+    [self drawPlot];
+}
+
+-(void)drawPlot
+{
     int maxValue = 0, maxLength = 0;
     float width = self.bounds.size.width - 2.0f;
     float height = self.bounds.size.height - 8.0f;
@@ -63,11 +73,11 @@
     for(dataSet in _setsToDraw)
     {
         [path moveToPoint:NSMakePoint(offsetX, offsetY + 
-                                        (float)dataSet.values[0] * stepY)];
+                                      (float)dataSet.values[0] * stepY)];
         for (int x = 1; x < dataSet.length; x++) {
             float y = (float)dataSet.values[x];
             [path lineToPoint:NSMakePoint((float)x * stepX + offsetX, 
-                                                 y * stepY + offsetY)];
+                                          y * stepY + offsetY)];
         }
         [dataSet.color setStroke];
         [path stroke];
