@@ -8,16 +8,21 @@
 
 #import <Cocoa/Cocoa.h>
 #import "CACellGridView.h"
+#import "CAPlotView.h"
 
 @interface CAViewController : NSViewController
 {
 }
 
 @property (nonatomic, retain) IBOutlet CACellGridView *cellGridView;
+@property (nonatomic, retain) IBOutlet CAPlotView *plotView;
 @property (nonatomic, retain) IBOutlet NSSlider *simulationSpeedSlider;
 @property (nonatomic, retain) IBOutlet NSSlider *preyBirthRateSlider;
 @property (nonatomic, retain) IBOutlet NSSlider *predatorBirthRateSlider;
 @property (nonatomic, retain) IBOutlet NSSlider *predatorDeathRateSlider;
+@property (nonatomic, retain) IBOutlet NSTextField *generationTextField;
+@property (nonatomic, retain) IBOutlet NSTextField *preyCountTextField;
+@property (nonatomic, retain) IBOutlet NSTextField *predatorCountTextField;
 
 -(IBAction)startAutomata:(id)sender;
 -(IBAction)stopAutomata:(id)sender;

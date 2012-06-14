@@ -21,6 +21,9 @@
     CARectColorArray *rectColorArray;
 }
 
+@synthesize cellGrid = _cellGrid;
+@synthesize colorMap = _colorMap;
+
 -(id)initWithFrame:(NSRect)frameRect
 {
     self = [super initWithFrame:frameRect];
@@ -29,8 +32,6 @@
     return self;
 }
 
-@synthesize cellGrid = _cellGrid;
-@synthesize colorMap = _colorMap;
 
 - (void)drawRect:(NSRect)dirtyRect
 {
@@ -63,13 +64,17 @@
     NSColor *previousCellColor = bgColor;
     NSRect cellBounds = NSZeroRect;      
     float cellWidth, cellHeight;
-    cellWidth = self.bounds.size.width / (float)cellGrid.width;
-    cellHeight = self.bounds.size.height / (float)cellGrid.height;
-        
+    
+    //2.0f is an offset for border
+    cellWidth = (self.bounds.size.width - 2.0f) / (float)cellGrid.width;
+    cellHeight = (self.bounds.size.height - 2.0f) / (float)cellGrid.height;
+    
+    //drawing border and background
     if (bgColor) {
-        [bgColor set];
+        [[NSColor blackColor] set];
         [NSBezierPath fillRect:self.bounds];
-        NSRectFill([self bounds]);
+        [bgColor set];
+        [NSBezierPath fillRect:NSInsetRect(self.bounds, 1.0f, 1.0f)];
     }
     
     for (int y = 0; y < cellGrid.height; y++) {
@@ -80,8 +85,11 @@
             if (currentCellValue == 0) {
                 currentCellColor = bgColor;
             }
-            else if (currentCellValue <= colorMap.length) {
+            else if (currentCellValue < colorMap.length) {
                 currentCellColor = colorMap.colors[currentCellValue];
+            }
+            else {
+                continue;
             }
             
             // isEqual is expensive, so it uses pointer comparison instead
@@ -89,12 +97,13 @@
                 cellBounds.size.width += cellWidth;
             }
             else {
-                if (previousCellColor != bgColor) {
+                if (previousCellColor != bgColor) 
+                {
                     [rectColorArray addRect:cellBounds Color:previousCellColor];
                 }
-                cellBounds = NSMakeRect(x * cellWidth + 0.5f, 
-                            _bounds.size.height - (y + 1) * cellHeight - 0.5f, 
-                                          cellWidth + 1.0f, cellHeight + 1.0f);
+                cellBounds = NSMakeRect(x * cellWidth + 1.0f, 
+                            _bounds.size.height - (y + 1) * cellHeight - 1.0f, 
+                                          cellWidth, cellHeight);
             }
             
             // draws row's last element

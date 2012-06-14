@@ -27,6 +27,9 @@
     int _totalCellCount;
     int _preyCellCount;
     int _predatorCellCount;
+    int _generation;
+    CAPlotDataSet *_preyDataSet;
+    CAPlotDataSet *_predatorDataSet;
 }
 
 @synthesize cellGrid = _cellGrid;
@@ -36,6 +39,9 @@
 @synthesize totalCellCount = _totalCellCount;
 @synthesize preyCellCount = _preyCellCount;
 @synthesize predatorCellCount = _predatorCellCount;
+@synthesize generation = _generation;
+@synthesize preyDataSet = _preyDataSet;
+@synthesize predatorDataSet = _predatorDataSet;
 
 -(id)initWithWidth:(int)width Height:(int)height
 {
@@ -44,6 +50,8 @@
         _cellGrid.width = width;
         _cellGrid.height = height;
         _totalCellCount = width * height;
+        _preyDataSet = [[CAPlotDataSet alloc] init];
+        _predatorDataSet = [[CAPlotDataSet alloc] init];
         [self populateGrid];        
     }
     return self;
@@ -120,6 +128,9 @@
     _grid = _newGrid;
     _newGrid = toSwap;
     _cellGrid.grid = _grid;
+    _generation++;
+    [_preyDataSet addValue:_preyCellCount];
+    [_predatorDataSet addValue:_predatorCellCount];
 }
 
 -(void)populateGrid
@@ -149,6 +160,9 @@
         }
     }
     _cellGrid.grid = _grid;
+    _generation = 0;
+    [_preyDataSet addValue:_preyCellCount];
+    [_predatorDataSet addValue:_predatorCellCount];
 }
 
 -(float)calculateCoefOf:(CellType)type inArray:(CellType *)array withLen:(int)len

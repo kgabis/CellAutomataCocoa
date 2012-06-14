@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "CACellularAutomata.h"
+#import "CAPlotDataSet.h"
 
 typedef enum _CellType {
     CTEmpty = 0,
@@ -27,6 +28,9 @@ typedef enum _CellType {
 @property (readonly) int totalCellCount;
 @property (readonly) int preyCellCount;
 @property (readonly) int predatorCellCount;
+@property (readonly) int generation;
+@property (readonly) CAPlotDataSet *preyDataSet;
+@property (readonly) CAPlotDataSet *predatorDataSet;
 
 - (id)initWithWidth:(int)width Height:(int)height;
 - (void)nextIteration;
