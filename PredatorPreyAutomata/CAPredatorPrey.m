@@ -177,9 +177,9 @@
 -(Cell**)allocGrid
 {
     CellType **grid;
-    grid = (Cell**)malloc(_cellGrid.width * sizeof(Cell*));
-    for (int i = 0; i < _cellGrid.width; i++) {
-        grid[i] = (Cell*) malloc(_cellGrid.height * sizeof(Cell));
+    grid = (Cell**)malloc(_cellGrid.height * sizeof(Cell*));
+    for (int i = 0; i < _cellGrid.height; i++) {
+        grid[i] = (Cell*) malloc(_cellGrid.width * sizeof(Cell));
     }
     return grid;
 }
