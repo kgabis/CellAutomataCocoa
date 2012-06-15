@@ -20,7 +20,6 @@ enum {
 {
     int *_buffer;
     int *_values;
-    int _bufferOffset;
     int _length;
     NSColor *_color;
     int _max;
@@ -44,18 +43,19 @@ enum {
 
 -(void)addValue:(int)value
 {
+    //we move pointer to the values till whole buffer is used
+    //that gives us scrolling behavior
     if (_length == (CABufferSize / 2 )) {
         _values[_length] = value;
         _values++;
-        _bufferOffset++;
-        if (_bufferOffset == (CABufferSize / 2)) {
+        //we check, if second half of the buffer is used and then we
+        //return to the beginning of the buffer
+        if (_buffer + (CABufferSize / 2) == _values ) {
             memmove(_buffer, _values, _length * sizeof(int));
             _values = _buffer;
-            _bufferOffset = 0;
-        }
+         }
     }
     else {
-
         _values[_length] = value;
         _length++;
     }
@@ -67,7 +67,6 @@ enum {
     free(_buffer);
     _buffer = (int*)calloc(sizeof(int), CABufferSize);
     _values = _buffer;
-    _bufferOffset = 0;
     _length = 0;
 }
 
