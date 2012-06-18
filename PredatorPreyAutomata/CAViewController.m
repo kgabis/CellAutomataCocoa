@@ -40,11 +40,12 @@ enum {
 
     NSObject <CACellularAutomata> *_model;
     ColorMap _colorMap;
-    float _animationSpeed;
+    float _simulationSpeed;
     BOOL _running;
     NSTimer *_timer;
     NSUserDefaults *_userDefaults;
     NSArray *_modelDataSets;
+    
 }
 
 @synthesize cellGridView = _cellGridView;
@@ -115,7 +116,8 @@ enum {
 
 -(void)updateTimer
 {
-    double delayInSeconds = 1.005f - _animationSpeed;
+    float tempSimulationSpeed = _simulationSpeed > 1.0f ? 1.0f : _simulationSpeed;
+    double delayInSeconds = 0.03f + (0.2f - 0.2f * tempSimulationSpeed);
     [_timer invalidate];
     if (_running) {
         _timer = [NSTimer scheduledTimerWithTimeInterval:delayInSeconds 
@@ -130,7 +132,7 @@ enum {
 {
     if (sender == self.simulationSpeedSlider) {
         [_userDefaults setFloat:sender.floatValue forKey:CAUpdateSpeedKey];
-        _animationSpeed = sender.floatValue / 100.0f;
+        _simulationSpeed = sender.floatValue;
         [self updateTimer];
     }
     else if (sender == self.preyBirthRateSlider) {
@@ -158,7 +160,7 @@ enum {
     _model = [[CAPredatorPrey alloc] initWithWidth:CACellGridWidth 
                                             Height:CACellGridHeight];
     
-    _animationSpeed = self.simulationSpeedSlider.floatValue / 100.0f;
+    _simulationSpeed = self.simulationSpeedSlider.floatValue;
     ((CAPredatorPrey*)_model).probabilityA = self.preyBirthRateSlider.floatValue / 100.0f;
     ((CAPredatorPrey*)_model).probabilityB = self.predatorBirthRateSlider.floatValue / 100.0f;
     ((CAPredatorPrey*)_model).probabilityC = self.predatorDeathRateSlider.floatValue / 100.0f; 
@@ -173,7 +175,16 @@ enum {
 
 -(void)animate
 { 
-    [_model nextIteration];
+    if (_simulationSpeed <= 1.7f) {
+        [_model nextIteration];
+    }
+    else {
+        int iterationCounter = (int)(_simulationSpeed * 2.0f);
+        while (iterationCounter--) {
+            [_model nextIteration];
+        }
+    }
+    
     _cellGridView.cellGrid = _model.cellGrid;
     [_cellGridView setNeedsDisplayInRect:_cellGridView.bounds]; 
     [self updateTextFields];
