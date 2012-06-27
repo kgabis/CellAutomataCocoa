@@ -9,7 +9,8 @@
 #import "CAPlotDataSet.h"
 
 enum {
-    CABufferSize = 1024
+    CABufferStartingSize = 1024,
+    CAVisibleValuesRange = 256
 };
 
 @interface CAPlotDataSet ()
@@ -19,13 +20,17 @@ enum {
 @implementation CAPlotDataSet
 {
     int *_buffer;
-    int *_values;
+    int _bufferSize;
+    int *_visibleValues;
+    int _visibleLength;
     int _length;
     NSColor *_color;
     int _max;
     int _min;
 }
-@synthesize values = _values;
+@synthesize visibleValues = _visibleValues;
+@synthesize visibleLength = _visibleLength;
+@synthesize values = _buffer;
 @synthesize length = _length;
 @synthesize color = _color;
 @synthesize max;
@@ -35,46 +40,47 @@ enum {
 {
     self = [super init];
     if (self) {
-        _buffer = (int*)calloc(sizeof(int), CABufferSize);
-        _values = _buffer;
+        _buffer = (int*)calloc(sizeof(int), CABufferStartingSize);
+        _visibleValues = _buffer;
+        _bufferSize = CABufferStartingSize;
     }
     return self;
 }
 
 -(void)addValue:(int)value
 {
-    //we move pointer to the values till whole buffer is used
-    //that gives us scrolling behavior
-    if (_length == (CABufferSize / 2 )) {
-        _values[_length] = value;
-        _values++;
-        //we check, if second half of the buffer is used and then we
-        //return to the beginning of the buffer
-        if (_buffer + (CABufferSize / 2) == _values ) {
-            memmove(_buffer, _values, _length * sizeof(int));
-            _values = _buffer;
-         }
+    if (_length == _bufferSize) {
+        int valuesOffset = _visibleValues - _buffer;
+        _bufferSize = 2 * _bufferSize;        
+        _buffer = (int*) realloc(_buffer, _bufferSize * sizeof(int));
+        assert(_buffer != NULL);
+        _visibleValues = _buffer + valuesOffset;        
+    }
+            
+    if (_visibleLength == CAVisibleValuesRange) {
+        _visibleValues[_visibleLength] = value;
+        _visibleValues++;
     }
     else {
-        _values[_length] = value;
-        _length++;
+        _visibleValues[_visibleLength] = value;
+        _visibleLength++;
     }
-    
+    _length++;   
 }
 
 -(void)clear
 {
     free(_buffer);
-    _buffer = (int*)calloc(sizeof(int), CABufferSize);
-    _values = _buffer;
-    _length = 0;
+    _buffer = (int*)calloc(sizeof(int), CABufferStartingSize);
+    _visibleValues = _buffer;
+    _visibleLength = 0;
 }
 
 -(int)max
 {
     int tempMax = 0;
-    for (int i = 0; i < _length; i++) {
-        tempMax = MAX(tempMax, _values[i]);
+    for (int i = 0; i < _visibleLength; i++) {
+        tempMax = MAX(tempMax, _visibleValues[i]);
     }
     return tempMax;
 }
@@ -82,8 +88,8 @@ enum {
 -(int)min
 {
     int tempMin = 0;
-    for (int i = 0; i < _length; i++) {
-        tempMin = MIN(tempMin, _values[i]);
+    for (int i = 0; i < _visibleLength; i++) {
+        tempMin = MIN(tempMin, _visibleValues[i]);
     }
     return tempMin;
 }

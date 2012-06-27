@@ -117,7 +117,7 @@ enum {
 -(void)updateTimer
 {
     float tempSimulationSpeed = _simulationSpeed > 1.0f ? 1.0f : _simulationSpeed;
-    double delayInSeconds = 0.03f + (0.2f - 0.2f * tempSimulationSpeed);
+    double delayInSeconds = 0.04f + (0.2f - 0.2f * tempSimulationSpeed);
     [_timer invalidate];
     if (_running) {
         _timer = [NSTimer scheduledTimerWithTimeInterval:delayInSeconds 

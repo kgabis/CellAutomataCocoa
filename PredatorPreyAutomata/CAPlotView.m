@@ -63,7 +63,7 @@
     for(dataSet in _setsToDraw)
     {
         maxValue = MAX(maxValue, dataSet.max);
-        maxLength = MAX(maxLength, dataSet.length);
+        maxLength = MAX(maxLength, dataSet.visibleLength);
     }
     
     stepX = width / maxLength;
@@ -73,9 +73,9 @@
     for(dataSet in _setsToDraw)
     {
         [path moveToPoint:NSMakePoint(offsetX, offsetY + 
-                                      (float)dataSet.values[0] * stepY)];
-        for (int x = 1; x < dataSet.length; x++) {
-            float y = (float)dataSet.values[x];
+                                      (float)dataSet.visibleValues[0] * stepY)];
+        for (int x = 1; x < dataSet.visibleLength; x++) {
+            float y = (float)dataSet.visibleValues[x];
             [path lineToPoint:NSMakePoint((float)x * stepX + offsetX, 
                                           y * stepY + offsetY)];
         }

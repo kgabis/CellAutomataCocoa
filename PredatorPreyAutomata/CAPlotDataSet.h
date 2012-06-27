@@ -10,6 +10,8 @@
 
 @interface CAPlotDataSet : NSObject
 
+@property (readonly) int *visibleValues;
+@property (readonly) int visibleLength;
 @property (readonly) int *values;
 @property (readonly) int length;
 @property NSColor *color;
