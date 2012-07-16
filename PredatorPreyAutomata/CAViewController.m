@@ -28,15 +28,6 @@ enum {
 
 @implementation CAViewController
 {
-    IBOutlet CACellGridView *_cellGridView;
-    IBOutlet CAPlotView *_plotView;
-    IBOutlet NSSlider *_simulationSpeedSlider;
-    IBOutlet NSSlider *_preyBirthRateSlider;
-    IBOutlet NSSlider *_predatorBirthRateSlider;
-    IBOutlet NSSlider *_predatorDeathRateSlider;
-    IBOutlet NSTextField *_generationTextField;
-    IBOutlet NSTextField *_preyCountTextField;
-    IBOutlet NSTextField *_predatorCountTextField;
 
     NSObject <CACellularAutomata> *_model;
     ColorMap _colorMap;
@@ -57,6 +48,9 @@ enum {
 @synthesize generationTextField = _generationTextField;
 @synthesize preyCountTextField = _preyCountTextField;
 @synthesize predatorCountTextField = _predatorCountTextField;
+@synthesize preyBirthRateTextField = _preyBirthRateTextField;
+@synthesize predatorBirthRateTextField = _predatorBirthRateTextField;
+@synthesize predatorDeathRateTextField = _predatorDeathRateTextField;
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -147,6 +141,7 @@ enum {
         [_userDefaults setFloat:sender.floatValue forKey:CAPredatorDeathRateKey];
         ((CAPredatorPrey*)_model).probabilityC = sender.floatValue / 100.0f;        
     }
+    [self updateTextFields];
 }
 
 -(void)setupModel
@@ -199,6 +194,12 @@ enum {
                             ((CAPredatorPrey*)_model).preyCellCount];
     [_predatorCountTextField setIntValue:
                             ((CAPredatorPrey*)_model).predatorCellCount];
+    [_preyBirthRateTextField setFloatValue:
+                            (_preyBirthRateSlider.floatValue / 100.0f)];
+    [_predatorBirthRateTextField setFloatValue:
+                            (_predatorBirthRateSlider.floatValue / 100.0f)];
+    [_predatorDeathRateTextField setFloatValue:
+                            (_predatorDeathRateSlider.floatValue / 100.0f)];
 }
 
 -(void)dealloc

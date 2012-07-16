@@ -23,6 +23,9 @@
 @property (nonatomic, retain) IBOutlet NSTextField *generationTextField;
 @property (nonatomic, retain) IBOutlet NSTextField *preyCountTextField;
 @property (nonatomic, retain) IBOutlet NSTextField *predatorCountTextField;
+@property (nonatomic, retain) IBOutlet NSTextField *preyBirthRateTextField;
+@property (nonatomic, retain) IBOutlet NSTextField *predatorBirthRateTextField;
+@property (nonatomic, retain) IBOutlet NSTextField *predatorDeathRateTextField;
 
 -(IBAction)startAutomata:(id)sender;
 -(IBAction)stopAutomata:(id)sender;
