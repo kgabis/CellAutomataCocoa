@@ -131,15 +131,15 @@ enum {
     }
     else if (sender == self.preyBirthRateSlider) {
         [_userDefaults setFloat:sender.floatValue forKey:CAPreyBirthRateKey];
-        ((CAPredatorPrey*)_model).probabilityA = sender.floatValue / 100.0f;
+        ((CAPredatorPreyAutomata*)_model).probabilityA = sender.floatValue / 100.0f;
     }
     else if (sender == self.predatorBirthRateSlider) {
         [_userDefaults setFloat:sender.floatValue forKey:CAPredatorBirthRateKey];
-        ((CAPredatorPrey*)_model).probabilityB = sender.floatValue / 100.0f;
+        ((CAPredatorPreyAutomata*)_model).probabilityB = sender.floatValue / 100.0f;
     }
     else if (sender == self.predatorDeathRateSlider) {
         [_userDefaults setFloat:sender.floatValue forKey:CAPredatorDeathRateKey];
-        ((CAPredatorPrey*)_model).probabilityC = sender.floatValue / 100.0f;        
+        ((CAPredatorPreyAutomata*)_model).probabilityC = sender.floatValue / 100.0f;        
     }
     [self updateTextFields];
 }
@@ -152,19 +152,19 @@ enum {
     _colorMap.colors[CTPrey] = [NSColor darkGrayColor];
     _colorMap.colors[CTPredator] = [NSColor redColor];
     
-    _model = [[CAPredatorPrey alloc] initWithWidth:CACellGridWidth 
+    _model = [[CAPredatorPreyAutomata alloc] initWithWidth:CACellGridWidth 
                                             Height:CACellGridHeight];
     
     _simulationSpeed = self.simulationSpeedSlider.floatValue;
-    ((CAPredatorPrey*)_model).probabilityA = self.preyBirthRateSlider.floatValue / 100.0f;
-    ((CAPredatorPrey*)_model).probabilityB = self.predatorBirthRateSlider.floatValue / 100.0f;
-    ((CAPredatorPrey*)_model).probabilityC = self.predatorDeathRateSlider.floatValue / 100.0f; 
+    ((CAPredatorPreyAutomata*)_model).probabilityA = self.preyBirthRateSlider.floatValue / 100.0f;
+    ((CAPredatorPreyAutomata*)_model).probabilityB = self.predatorBirthRateSlider.floatValue / 100.0f;
+    ((CAPredatorPreyAutomata*)_model).probabilityC = self.predatorDeathRateSlider.floatValue / 100.0f; 
     NSMutableArray *dataSets = [[NSMutableArray alloc] initWithCapacity:2];
-    ((CAPredatorPrey*)_model).preyDataSet.color = _colorMap.colors[CTPrey];
-    ((CAPredatorPrey*)_model).predatorDataSet.color = _colorMap.colors[CTPredator];
+    ((CAPredatorPreyAutomata*)_model).preyDataSet.color = _colorMap.colors[CTPrey];
+    ((CAPredatorPreyAutomata*)_model).predatorDataSet.color = _colorMap.colors[CTPredator];
                                                                    
-    [dataSets addObject:((CAPredatorPrey*)_model).preyDataSet];
-    [dataSets addObject:((CAPredatorPrey*)_model).predatorDataSet];
+    [dataSets addObject:((CAPredatorPreyAutomata*)_model).preyDataSet];
+    [dataSets addObject:((CAPredatorPreyAutomata*)_model).predatorDataSet];
     _plotView.setsToDraw = [NSArray arrayWithArray:dataSets];
 }
 
@@ -189,11 +189,11 @@ enum {
 -(void)updateTextFields
 {
     [_generationTextField setIntValue:
-                            ((CAPredatorPrey*)_model).generation];
+                            ((CAPredatorPreyAutomata*)_model).generation];
     [_preyCountTextField setIntValue:
-                            ((CAPredatorPrey*)_model).preyCellCount];
+                            ((CAPredatorPreyAutomata*)_model).preyCellCount];
     [_predatorCountTextField setIntValue:
-                            ((CAPredatorPrey*)_model).predatorCellCount];
+                            ((CAPredatorPreyAutomata*)_model).predatorCellCount];
     [_preyBirthRateTextField setFloatValue:
                             (_preyBirthRateSlider.floatValue / 100.0f)];
     [_predatorBirthRateTextField setFloatValue:
@@ -210,7 +210,7 @@ enum {
     int result = [save runModal];
     if (result == NSOKButton) {
         NSString *selectedFile = save.URL.path;
-        [(CAPredatorPrey*)_model saveDataToCSVFile:selectedFile];
+        [(CAPredatorPreyAutomata*)_model saveDataToCSVFile:selectedFile];
     }
 }
 

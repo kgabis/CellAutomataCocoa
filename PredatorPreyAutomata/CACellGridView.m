@@ -7,7 +7,7 @@
 //
 
 #import "CACellGridView.h"
-#import "CAPredatorPrey.h"
+#import "CAPredatorPreyAutomata.h"
 #import "CARectColorArray.h"
 
 @interface CACellGridView ()

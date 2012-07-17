@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "CAPredatorPrey.h"
+#import "CAPredatorPreyAutomata.h"
 #import "CACellularAutomata.h"
 
 typedef struct _ColorMap {
