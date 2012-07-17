@@ -202,6 +202,18 @@ enum {
                             (_predatorDeathRateSlider.floatValue / 100.0f)];
 }
 
+-(void)saveToCSVFile:(id)sender
+{
+    NSSavePanel *save = [NSSavePanel savePanel];
+    [save setNameFieldStringValue:@"simulation.csv"];
+    [save setDirectoryURL:[NSURL URLWithString:@"~/Desktop/"]];
+    int result = [save runModal];
+    if (result == NSOKButton) {
+        NSString *selectedFile = save.URL.path;
+        [(CAPredatorPrey*)_model saveDataToCSVFile:selectedFile];
+    }
+}
+
 -(void)dealloc
 {
     free(_colorMap.colors);

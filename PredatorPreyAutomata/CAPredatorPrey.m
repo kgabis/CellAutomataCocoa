@@ -196,6 +196,22 @@
     }
 }
 
+-(void)saveDataToCSVFile:(NSString*)filename
+{
+    FILE *f = fopen(filename.UTF8String, "w"); 
+    if (f == NULL) 
+        return; 
+    fprintf(f, "Prey count,Predator count\n"); 
+    int preyCount, predatorCount;
+    for(int i = 0; i < _preyDataSet.length && i < _predatorDataSet.length; i++)
+    {
+        preyCount = _preyDataSet.values[i];
+        predatorCount = _predatorDataSet.values[i];
+        fprintf(f, "%d,%d\n", preyCount, predatorCount); 
+    }
+    fclose(f);     
+}
+
 -(void)dealloc
 {
     [self freeGrid:_grid];

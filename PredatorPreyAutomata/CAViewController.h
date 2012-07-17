@@ -31,5 +31,6 @@
 -(IBAction)stopAutomata:(id)sender;
 -(IBAction)resetAutomata:(id)sender;
 -(IBAction)sliderChanged:(NSSlider*)sender;
+-(IBAction)saveToCSVFile:(id)sender;
 
 @end

@@ -34,5 +34,6 @@ typedef enum _CellType {
 
 - (id)initWithWidth:(int)width Height:(int)height;
 - (void)nextIteration;
+- (void)saveDataToCSVFile:(NSString*)filename;
 
 @end
