@@ -53,7 +53,7 @@
 		EE1A61171575345F00AC0D39 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		EE1A611E157536EE00AC0D39 /* CACellGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CACellGridView.h; sourceTree = "<group>"; };
 		EE1A611F157536EE00AC0D39 /* CACellGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CACellGridView.m; sourceTree = "<group>"; };
-		EE1A61211576708900AC0D39 /* CAPredatorPreyAutomata.h */ = {isa = PBXFileReference; fileEncoding = 4; path = CAPredatorPreyAutomata.h; sourceTree = "<group>"; };
+		EE1A61211576708900AC0D39 /* CAPredatorPreyAutomata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPredatorPreyAutomata.h; sourceTree = "<group>"; };
 		EE1A61221576708900AC0D39 /* CAPredatorPreyAutomata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPredatorPreyAutomata.m; sourceTree = "<group>"; };
 		EE1A6124157685F300AC0D39 /* CAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAViewController.h; sourceTree = "<group>"; };
 		EE1A6125157685F300AC0D39 /* CAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAViewController.m; sourceTree = "<group>"; };
@@ -180,7 +180,7 @@
 		EE1A60F41575345E00AC0D39 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0440;
 				ORGANIZATIONNAME = AGH;
 			};
 			buildConfigurationList = EE1A60F71575345E00AC0D39 /* Build configuration list for PBXProject "CellularAutomataCocoa" */;
@@ -313,6 +313,7 @@
 		EE1A611C1575345F00AC0D39 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PredatorPreyAutomata/CellularAutomataCocoa-Prefix.pch";
 				INFOPLIST_FILE = "PredatorPreyAutomata/CellularAutomataCocoa-Info.plist";
@@ -324,6 +325,7 @@
 		EE1A611D1575345F00AC0D39 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PredatorPreyAutomata/CellularAutomataCocoa-Prefix.pch";
 				INFOPLIST_FILE = "PredatorPreyAutomata/CellularAutomataCocoa-Info.plist";

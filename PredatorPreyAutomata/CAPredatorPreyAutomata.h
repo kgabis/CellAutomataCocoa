@@ -10,7 +10,7 @@
 #import "CACellularAutomata.h"
 #import "CAPlotDataSet.h"
 
-typedef enum _CellType {
+typedef enum {
     CTEmpty = 0,
     CTPrey = 1,
     CTPredator = 2

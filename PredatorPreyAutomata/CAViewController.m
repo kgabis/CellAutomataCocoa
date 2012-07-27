@@ -207,7 +207,7 @@ enum {
     NSSavePanel *save = [NSSavePanel savePanel];
     [save setNameFieldStringValue:@"simulation.csv"];
     [save setDirectoryURL:[NSURL URLWithString:@"~/Desktop/"]];
-    int result = [save runModal];
+    NSInteger result = [save runModal];
     if (result == NSOKButton) {
         NSString *selectedFile = save.URL.path;
         [(CAPredatorPreyAutomata*)_model saveDataToCSVFile:selectedFile];
