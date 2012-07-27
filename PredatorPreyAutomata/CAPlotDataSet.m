@@ -28,13 +28,6 @@ enum {
     int _max;
     int _min;
 }
-@synthesize visibleValues = _visibleValues;
-@synthesize visibleLength = _visibleLength;
-@synthesize values = _buffer;
-@synthesize length = _length;
-@synthesize color = _color;
-@synthesize max;
-@synthesize min;
 
 -(id)init
 {
@@ -50,7 +43,7 @@ enum {
 -(void)addValue:(int)value
 {
     if (_length == _bufferSize) {
-        int valuesOffset = _visibleValues - _buffer;
+        long valuesOffset = _visibleValues - _buffer;
         _bufferSize = 2 * _bufferSize;        
         _buffer = (int*) realloc(_buffer, _bufferSize * sizeof(int));
         assert(_buffer != NULL);

@@ -32,16 +32,6 @@
     CAPlotDataSet *_predatorDataSet;
 }
 
-@synthesize cellGrid = _cellGrid;
-@synthesize probabilityA = _probabilityA;
-@synthesize probabilityB = _probabilityB;
-@synthesize probabilityC = _probabilityC;
-@synthesize totalCellCount = _totalCellCount;
-@synthesize preyCellCount = _preyCellCount;
-@synthesize predatorCellCount = _predatorCellCount;
-@synthesize generation = _generation;
-@synthesize preyDataSet = _preyDataSet;
-@synthesize predatorDataSet = _predatorDataSet;
 
 -(id)initWithWidth:(int)width Height:(int)height
 {

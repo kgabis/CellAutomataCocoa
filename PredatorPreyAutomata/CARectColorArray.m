@@ -16,10 +16,6 @@
     int _length;
 }
 
-@synthesize count = _count;
-@synthesize rects = _rects;
-@synthesize colors = _colors;
-@synthesize length = _length;
 
 -(id)initWithLength:(int)length
 {

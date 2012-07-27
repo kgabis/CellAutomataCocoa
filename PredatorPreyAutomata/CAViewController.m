@@ -39,18 +39,6 @@ enum {
     
 }
 
-@synthesize cellGridView = _cellGridView;
-@synthesize plotView = _plotView;
-@synthesize simulationSpeedSlider = _simulationSpeedSlider;
-@synthesize preyBirthRateSlider = _preyBirthRateSlider;
-@synthesize predatorBirthRateSlider = _predatorBirthRateSlider;
-@synthesize predatorDeathRateSlider = _predatorDeathRateSlider;
-@synthesize generationTextField = _generationTextField;
-@synthesize preyCountTextField = _preyCountTextField;
-@synthesize predatorCountTextField = _predatorCountTextField;
-@synthesize preyBirthRateTextField = _preyBirthRateTextField;
-@synthesize predatorBirthRateTextField = _predatorBirthRateTextField;
-@synthesize predatorDeathRateTextField = _predatorDeathRateTextField;
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {

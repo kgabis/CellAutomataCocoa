@@ -21,8 +21,6 @@
     CARectColorArray *rectColorArray;
 }
 
-@synthesize cellGrid = _cellGrid;
-@synthesize colorMap = _colorMap;
 
 -(id)initWithFrame:(NSRect)frameRect
 {

@@ -19,7 +19,6 @@
     NSArray *_setsToDraw;
 }
 
-@synthesize setsToDraw = _setsToDraw;
 
 - (id)initWithFrame:(NSRect)frame
 {

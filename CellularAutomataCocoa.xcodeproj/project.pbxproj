@@ -49,10 +49,10 @@
 		EE1A610F1575345E00AC0D39 /* CellularAutomataCocoa-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CellularAutomataCocoa-Prefix.pch"; sourceTree = "<group>"; };
 		EE1A61111575345E00AC0D39 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		EE1A61131575345E00AC0D39 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		EE1A61141575345E00AC0D39 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		EE1A61141575345E00AC0D39 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		EE1A61171575345F00AC0D39 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		EE1A611E157536EE00AC0D39 /* CACellGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CACellGridView.h; sourceTree = "<group>"; };
-		EE1A611F157536EE00AC0D39 /* CACellGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CACellGridView.m; sourceTree = "<group>"; };
+		EE1A611F157536EE00AC0D39 /* CACellGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CACellGridView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		EE1A61211576708900AC0D39 /* CAPredatorPreyAutomata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPredatorPreyAutomata.h; sourceTree = "<group>"; };
 		EE1A61221576708900AC0D39 /* CAPredatorPreyAutomata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPredatorPreyAutomata.m; sourceTree = "<group>"; };
 		EE1A6124157685F300AC0D39 /* CAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAViewController.h; sourceTree = "<group>"; };
@@ -64,7 +64,7 @@
 		EEDC95CB15894ADF00D1C61E /* CAPlotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPlotView.h; sourceTree = "<group>"; };
 		EEDC95CC15894ADF00D1C61E /* CAPlotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPlotView.m; sourceTree = "<group>"; };
 		EEDC95CE15894DAB00D1C61E /* CAPlotDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPlotDataSet.h; sourceTree = "<group>"; };
-		EEDC95CF15894DAB00D1C61E /* CAPlotDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPlotDataSet.m; sourceTree = "<group>"; };
+		EEDC95CF15894DAB00D1C61E /* CAPlotDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CAPlotDataSet.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
