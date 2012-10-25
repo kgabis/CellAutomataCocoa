@@ -9,13 +9,6 @@
 #import "CARectColorArray.h"
 
 @implementation CARectColorArray
-{
-    int _count;
-    NSRect *_rects;
-    NSColor * __autoreleasing *colors;
-    int _length;
-}
-
 
 -(id)initWithLength:(int)length
 {
