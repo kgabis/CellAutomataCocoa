@@ -10,7 +10,7 @@
 
 @interface CAPlotView ()
 
--(void)drawBorder;
+-(void)drawBackgroundAndBorder;
 -(void)drawPlot;
 @end
 
@@ -29,7 +29,7 @@
     return self;
 }
 
-- (void)drawBorder
+- (void)drawBackgroundAndBorder
 {
     [[NSColor blackColor] set];
     [NSBezierPath fillRect:self.bounds];
@@ -44,7 +44,7 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-    [self drawBorder];
+    [self drawBackgroundAndBorder];
     [self drawPlot];
 }
 

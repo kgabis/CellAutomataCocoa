@@ -15,8 +15,8 @@ NSString * const CAPredatorBirthRateKey = @"PredatorBirthRate";
 NSString * const CAPredatorDeathRateKey = @"PredatorDeathRate";
 
 enum {
-    CACellGridWidth = 300,
-    CACellGridHeight = 300
+    CACellGridWidth = 600,
+    CACellGridHeight = 600
 };
 
 @interface CAViewController ()
@@ -28,17 +28,14 @@ enum {
 
 @implementation CAViewController
 {
-
     NSObject <CACellularAutomata> *_model;
     ColorMap _colorMap;
     float _simulationSpeed;
     BOOL _running;
     NSTimer *_timer;
     NSUserDefaults *_userDefaults;
-    NSArray *_modelDataSets;
-    
+    NSArray *_modelDataSets;    
 }
-
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -102,7 +99,7 @@ enum {
     double delayInSeconds = 0.04f + (0.2f - 0.2f * tempSimulationSpeed);
     [_timer invalidate];
     if (_running) {
-        _timer = [NSTimer scheduledTimerWithTimeInterval:delayInSeconds 
+        _timer = [NSTimer scheduledTimerWithTimeInterval:delayInSeconds
                                                   target:self 
                                                 selector:@selector(animate) 
                                                 userInfo:nil 

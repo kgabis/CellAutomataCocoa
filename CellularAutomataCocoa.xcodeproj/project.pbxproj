@@ -16,7 +16,6 @@
 		EE1A6120157536EE00AC0D39 /* CACellGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A611F157536EE00AC0D39 /* CACellGridView.m */; };
 		EE1A61231576708900AC0D39 /* CAPredatorPreyAutomata.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A61221576708900AC0D39 /* CAPredatorPreyAutomata.m */; };
 		EE1A6126157685F300AC0D39 /* CAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A6125157685F300AC0D39 /* CAViewController.m */; };
-		EE576BCB157FFA3D00561514 /* CARectColorArray.m in Sources */ = {isa = PBXBuildFile; fileRef = EE576BCA157FFA3D00561514 /* CARectColorArray.m */; };
 		EEDC95A115874E5F00D1C61E /* CellularAutomataCocoa.app in Copy Files */ = {isa = PBXBuildFile; fileRef = EE1A60FD1575345E00AC0D39 /* CellularAutomataCocoa.app */; };
 		EEDC95AB158779C900D1C61E /* CellularAutomataIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = EEDC95AA158779C900D1C61E /* CellularAutomataIcon.png */; };
 		EEDC95CD15894ADF00D1C61E /* CAPlotView.m in Sources */ = {isa = PBXBuildFile; fileRef = EEDC95CC15894ADF00D1C61E /* CAPlotView.m */; };
@@ -58,8 +57,6 @@
 		EE1A6124157685F300AC0D39 /* CAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAViewController.h; sourceTree = "<group>"; };
 		EE1A6125157685F300AC0D39 /* CAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAViewController.m; sourceTree = "<group>"; };
 		EE2CD3A0157B78E200D02FE8 /* CACellularAutomata.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CACellularAutomata.h; sourceTree = "<group>"; };
-		EE576BC9157FFA3D00561514 /* CARectColorArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CARectColorArray.h; sourceTree = "<group>"; };
-		EE576BCA157FFA3D00561514 /* CARectColorArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CARectColorArray.m; sourceTree = "<group>"; };
 		EEDC95AA158779C900D1C61E /* CellularAutomataIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CellularAutomataIcon.png; path = ../CellularAutomataIcon.png; sourceTree = "<group>"; };
 		EEDC95CB15894ADF00D1C61E /* CAPlotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPlotView.h; sourceTree = "<group>"; };
 		EEDC95CC15894ADF00D1C61E /* CAPlotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPlotView.m; sourceTree = "<group>"; };
@@ -129,8 +126,6 @@
 				EE1A6124157685F300AC0D39 /* CAViewController.h */,
 				EE1A6125157685F300AC0D39 /* CAViewController.m */,
 				EE2CD3A0157B78E200D02FE8 /* CACellularAutomata.h */,
-				EE576BC9157FFA3D00561514 /* CARectColorArray.h */,
-				EE576BCA157FFA3D00561514 /* CARectColorArray.m */,
 				EEDC95CB15894ADF00D1C61E /* CAPlotView.h */,
 				EEDC95CC15894ADF00D1C61E /* CAPlotView.m */,
 				EEDC95CE15894DAB00D1C61E /* CAPlotDataSet.h */,
@@ -224,7 +219,6 @@
 				EE1A6120157536EE00AC0D39 /* CACellGridView.m in Sources */,
 				EE1A61231576708900AC0D39 /* CAPredatorPreyAutomata.m in Sources */,
 				EE1A6126157685F300AC0D39 /* CAViewController.m in Sources */,
-				EE576BCB157FFA3D00561514 /* CARectColorArray.m in Sources */,
 				EEDC95CD15894ADF00D1C61E /* CAPlotView.m in Sources */,
 				EEDC95D015894DAB00D1C61E /* CAPlotDataSet.m in Sources */,
 			);

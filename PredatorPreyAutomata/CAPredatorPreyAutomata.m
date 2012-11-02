@@ -8,12 +8,13 @@
 
 #import "CAPredatorPreyAutomata.h"
 
+static inline float calculateCoef(CellType type, CellType *array, int len);
+
 @interface CAPredatorPreyAutomata ()
 
 - (void) populateGrid;
 - (void) freeGrid:(Cell**)grid;
 - (Cell**) allocGrid;
-- (float) calculateCoefOf:(CellType)type inArray:(CellType*)array withLen:(int)len;
 
 @end
 
@@ -72,14 +73,10 @@
             neighbors[7] = _grid[(y + 1) % _cellGrid.height]
                                 [(x + 1) % _cellGrid.width];// SE
 
-            neighborPreyCoef = [self calculateCoefOf:CTPrey 
-                                             inArray:neighbors 
-                                             withLen:8];
-            neighborPredatorCoef = [self calculateCoefOf:CTPredator
-                                                 inArray:neighbors 
-                                                 withLen:8];
+            neighborPreyCoef = calculateCoef(CTPrey, neighbors, 8);
+            neighborPredatorCoef = calculateCoef(CTPredator, neighbors, 8);
             
-            r = (float)(arc4random() % 100) / 100.0f;
+            r = (random() % 100) / 100.0f;
             
             if (middle == CTEmpty && neighborPreyCoef > 0.0f) {
                 if (r < (_probabilityA * neighborPreyCoef)) {
@@ -134,7 +131,7 @@
     int r;
     for (int y = 0; y < _cellGrid.height; y++) {
         for (int x = 0; x < _cellGrid.width; x++) {
-            r = arc4random() % 100;
+            r = random() % 100;
             if (r < 1) {
                 newCell = CTPredator;
                 _predatorCellCount++;
@@ -153,15 +150,6 @@
     _generation = 0;
     [_preyDataSet addValue:_preyCellCount];
     [_predatorDataSet addValue:_predatorCellCount];
-}
-
--(float)calculateCoefOf:(CellType)type inArray:(CellType *)array withLen:(int)len
-{
-    int count = 0;
-    for (int i = 0; i < len; i++) {
-        array[i] == type ? count++ : count;
-    }
-    return (float)count / (float)len;
 }
 
 -(Cell**)allocGrid
@@ -208,5 +196,13 @@
     [self freeGrid:_newGrid];
 }
 
+
+static inline float calculateCoef(CellType type, CellType *array, int len) {
+    int count = 0;
+    for (int i = 0; i < len; i++) {
+        array[i] == type ? count++ : count;
+    }
+    return (float)count / (float)len;
+}
 
 @end
