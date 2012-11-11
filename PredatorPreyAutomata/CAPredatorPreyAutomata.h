@@ -16,12 +16,12 @@ typedef enum {
     CTPredator = 2
 } CellType;
 
-
 @interface CAPredatorPreyAutomata : NSObject <CACellularAutomata>
 {
 }
 
 @property (readonly) CellGrid cellGrid;
+@property (readonly) NSMutableSet *updatedCells;
 @property float probabilityA;
 @property float probabilityB;
 @property float probabilityC;
