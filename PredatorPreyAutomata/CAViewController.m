@@ -13,10 +13,10 @@ NSString * const CAUpdateSpeedKey = @"UpdateSpeed";
 NSString * const CAPreyBirthRateKey = @"PreyBirthRate";
 NSString * const CAPredatorBirthRateKey = @"PredatorBirthRate";
 NSString * const CAPredatorDeathRateKey = @"PredatorDeathRate";
-
+NSString * const CASimulationTypeKey = @"SimulationType";
 enum {
-    CACellGridWidth = 600,
-    CACellGridHeight = 600
+    CACellGridWidth = 300,
+    CACellGridHeight = 300
 };
 
 @interface CAViewController ()
@@ -61,12 +61,16 @@ enum {
     if ([_userDefaults objectForKey:CAPredatorDeathRateKey]) {
         _predatorDeathRateSlider.floatValue = [_userDefaults floatForKey:CAPredatorDeathRateKey];
     }
+    if ([_userDefaults objectForKey:CASimulationTypeKey]) {
+        [_simulationTypeComboBox selectItemAtIndex:[_userDefaults integerForKey:CASimulationTypeKey]];
+    } else {
+        [_simulationTypeComboBox selectItemAtIndex:0];
+    }
     
     [self setupModel];
     _cellGridView.colorMap = _colorMap;
     
     [self startAutomata:nil];
-    
 }
 
 
@@ -107,7 +111,7 @@ enum {
     }
 }
 
--(void)sliderChanged:(NSSlider *)sender
+-(void)settingChanged:(NSControl *)sender
 {
     if (sender == self.simulationSpeedSlider) {
         [_userDefaults setFloat:sender.floatValue forKey:CAUpdateSpeedKey];
@@ -125,6 +129,9 @@ enum {
     else if (sender == self.predatorDeathRateSlider) {
         [_userDefaults setFloat:sender.floatValue forKey:CAPredatorDeathRateKey];
         ((CAPredatorPreyAutomata*)_model).probabilityC = sender.floatValue / 100.0f;        
+    } else if (sender == self.simulationTypeComboBox) {
+        [_userDefaults setInteger:((NSComboBox*)sender).indexOfSelectedItem
+                         forKey:CASimulationTypeKey];
     }
     [self updateTextFields];
 }
@@ -154,14 +161,20 @@ enum {
 }
 
 -(void)animate
-{ 
+{
+    SEL simulationSelector;
+    if (_simulationTypeComboBox.indexOfSelectedItem == 0) {
+        simulationSelector = @selector(nextIterationDeterministic);
+    } else {
+        simulationSelector = @selector(nextIterationNondeterministic);
+    }
     if (_simulationSpeed <= 1.7f) {
-        [_model nextIteration];
+        [_model performSelector:simulationSelector];
     }
     else {
         int iterationCounter = (int)(_simulationSpeed * 2.0f);
         while (iterationCounter--) {
-            [_model nextIteration];
+            [_model performSelector:simulationSelector];
         }
     }
     

@@ -19,6 +19,6 @@ typedef struct _CellGrid
 
 @protocol CACellularAutomata <NSObject>
 -(void)initWithWidth:(unsigned int)width Height:(unsigned int)height;
--(void)nextIteration;
+-(void)nextIterationDeterministic;
 -(CellGrid)cellGrid;
 @end

@@ -21,7 +21,6 @@ typedef enum {
 }
 
 @property (readonly) CellGrid cellGrid;
-@property (readonly) NSMutableSet *updatedCells;
 @property float probabilityA;
 @property float probabilityB;
 @property float probabilityC;
@@ -33,7 +32,8 @@ typedef enum {
 @property (readonly) CAPlotDataSet *predatorDataSet;
 
 - (id)initWithWidth:(int)width Height:(int)height;
-- (void)nextIteration;
+- (void)nextIterationDeterministic;
+- (void)nextIterationNondeterministic;
 - (void)saveDataToCSVFile:(NSString*)filename;
 
 @end

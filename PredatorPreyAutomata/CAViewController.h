@@ -26,11 +26,12 @@
 @property (nonatomic, retain) IBOutlet NSTextField *preyBirthRateTextField;
 @property (nonatomic, retain) IBOutlet NSTextField *predatorBirthRateTextField;
 @property (nonatomic, retain) IBOutlet NSTextField *predatorDeathRateTextField;
+@property (nonatomic, retain) IBOutlet NSComboBox *simulationTypeComboBox;
 
 -(IBAction)startAutomata:(id)sender;
 -(IBAction)stopAutomata:(id)sender;
 -(IBAction)resetAutomata:(id)sender;
--(IBAction)sliderChanged:(NSSlider*)sender;
+-(IBAction)settingChanged:(NSControl*)sender;
 -(IBAction)saveToCSVFile:(id)sender;
 
 @end

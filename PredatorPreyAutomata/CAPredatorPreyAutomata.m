@@ -15,7 +15,6 @@ static inline float calculateCoef(CellType type, CellType *array, int len);
 - (void)populateGrid;
 - (void)freeGrid:(Cell**)grid;
 - (Cell**)allocGrid;
-- (NSMutableSet*)fillCellsToDraw;
 
 @end
 
@@ -44,19 +43,16 @@ static inline float calculateCoef(CellType type, CellType *array, int len);
         _preyDataSet = [[CAPlotDataSet alloc] init];
         _predatorDataSet = [[CAPlotDataSet alloc] init];
         [self populateGrid];
-        _updatedCells = [self fillCellsToDraw];
     }
     return self;
 }
 
--(void)nextIteration
+-(void)nextIterationDeterministic
 {
     CellType middle;
     CellType neighbors[8];
     float neighborPreyCoef, neighborPredatorCoef;
-    float r;
     int wrappedY, wrappedX; // To wrap array
-    NSMutableSet *newUpdatedCells = [NSMutableSet set];
 
     for (int y = 0; y < _cellGrid.height; y++) {
         for (int x = 0; x < _cellGrid.width; x++) {
@@ -72,6 +68,56 @@ static inline float calculateCoef(CellType type, CellType *array, int len);
             neighbors[6] = _cellGrid.grid[(y + 1) % _cellGrid.height][x]; // S
             neighbors[7] = _cellGrid.grid[(y + 1) % _cellGrid.height][(x + 1) % _cellGrid.width]; // SE
              
+            neighborPreyCoef = calculateCoef(CTPrey, neighbors, 8);
+            neighborPredatorCoef = calculateCoef(CTPredator, neighbors, 8);
+            
+            if (middle == CTEmpty && neighborPreyCoef > (1.0 - _probabilityA)) {
+                _newGrid[y][x] = CTPrey;
+                _preyCellCount++;
+            }
+            else if (middle == CTPrey && neighborPredatorCoef > (1.0 - _probabilityB)) {
+                _newGrid[y][x] = CTPredator;
+                _predatorCellCount++;
+                _preyCellCount--;
+            }
+            else if (middle == CTPredator && neighborPreyCoef < _probabilityC) {
+                _newGrid[y][x] = CTEmpty;
+                _predatorCellCount--;
+            }
+            else {
+                _newGrid[y][x] = middle;
+                continue;
+            }
+        }
+    }
+    SWAP(_cellGrid.grid, _newGrid);
+    _generation++;
+    [_preyDataSet addValue:_preyCellCount];
+    [_predatorDataSet addValue:_predatorCellCount];
+}
+
+-(void)nextIterationNondeterministic
+{
+    CellType middle;
+    CellType neighbors[8];
+    float neighborPreyCoef, neighborPredatorCoef;
+    float r;
+    int wrappedY, wrappedX; // To wrap array
+    
+    for (int y = 0; y < _cellGrid.height; y++) {
+        for (int x = 0; x < _cellGrid.width; x++) {
+            middle = _cellGrid.grid[y][x];
+            wrappedY = y == 0 ? _cellGrid.height - 1 : y - 1;
+            wrappedX = x == 0 ? _cellGrid.width - 1 : x - 1;
+            neighbors[0] = _cellGrid.grid[wrappedY][wrappedX]; // NW
+            neighbors[1] = _cellGrid.grid[wrappedY][x]; // N
+            neighbors[2] = _cellGrid.grid[wrappedY][(x +1) % _cellGrid.width]; // NE
+            neighbors[3] = _cellGrid.grid[y][wrappedX]; //W
+            neighbors[4] = _cellGrid.grid[y][(x +1) % _cellGrid.width]; // E
+            neighbors[5] = _cellGrid.grid[(y + 1) % _cellGrid.height][wrappedX]; // SW
+            neighbors[6] = _cellGrid.grid[(y + 1) % _cellGrid.height][x]; // S
+            neighbors[7] = _cellGrid.grid[(y + 1) % _cellGrid.height][(x + 1) % _cellGrid.width]; // SE
+            
             neighborPreyCoef = calculateCoef(CTPrey, neighbors, 8);
             neighborPredatorCoef = calculateCoef(CTPredator, neighbors, 8);
             
@@ -100,7 +146,6 @@ static inline float calculateCoef(CellType type, CellType *array, int len);
     _generation++;
     [_preyDataSet addValue:_preyCellCount];
     [_predatorDataSet addValue:_predatorCellCount];
-    _updatedCells = newUpdatedCells;
 }
 
 -(void)populateGrid
@@ -114,7 +159,7 @@ static inline float calculateCoef(CellType type, CellType *array, int len);
     int r;
     for (int y = 0; y < _cellGrid.height; y++) {
         for (int x = 0; x < _cellGrid.width; x++) {
-            r = random() % 100;
+            r = random() % 10;
             if (r < 1) {
                 newCell = CTPredator;
                 _predatorCellCount++;
@@ -176,16 +221,6 @@ static inline float calculateCoef(CellType type, CellType *array, int len);
 {
     [self freeGrid:_cellGrid.grid];
     [self freeGrid:_newGrid];
-}
-
--(NSMutableSet*)fillCellsToDraw {
-    NSMutableSet *cells = [NSMutableSet set];
-    for (int y = 0; y < _cellGrid.height; y++) {
-        for (int x = 0; x < _cellGrid.width; x++) {
-            [cells addObject:[NSValue valueWithPoint:NSMakePoint(y, x)]];
-        }
-    }
-    return cells;
 }
 
 static inline float calculateCoef(CellType type, CellType *array, int len) {
